@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El Veredicto — v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Poppins:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEFEB;
+    --ink:#15181C;
+    --ink-2:#565C63;
+    --panel:#181C21;
+    --rule:#BFC0BA;
+    --hair:#DEDFD9;
+    --green:#16643A;
+    --amber:#C08312;
+    --red:#A31D28;
+    --quill:#68902B;
+  }
+
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  *{box-sizing:border-box;}
+
+  body{
+    counter-reset:pg;
+    margin:0;
+    background:#5F615C;
+    font-family:"Source Serif 4",Georgia,serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .sheet{
+    counter-increment:pg;
+    width:210mm;
+    min-height:297mm;
+    background:var(--paper);
+    margin:14mm auto;
+    padding:16mm 17mm 13mm;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 3mm 15mm rgba(0,0,0,.36);
+    overflow:hidden;
+  }
+
+  /* ── file tab: the case-file device, bleeds off the right edge ── */
+  .tab{
+    position:absolute;
+    top:0; right:0;
+    width:16mm;
+    padding:9mm 0 5mm;
+    text-align:center;
+    color:#fff;
+  }
+  .tab .n{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:800;
+    font-size:20pt;
+    line-height:1;
+    display:block;
+  }
+  .tab .w{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:600;
+    font-size:8pt;
+    letter-spacing:.16em;
+    writing-mode:vertical-rl;
+    margin:5mm auto 0;
+    text-transform:uppercase;
+  }
+  .tab.green{background:var(--green);}
+  .tab.amber{background:var(--amber);}
+  .tab.red{background:var(--red);}
+
+  .head{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-size:8.5pt;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-2);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    padding-right:20mm;
+    padding-bottom:2.5mm;
+    border-bottom:.5mm solid var(--ink);
+    margin-bottom:9mm;
+  }
+
+  .question{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:800;
+    font-size:33pt;
+    line-height:.98;
+    letter-spacing:-.022em;
+    margin:0 0 8mm;
+    padding-right:14mm;
+  }
+
+  /* ── the two cases ── */
+  .cases{
+    display:grid;
+    grid-template-columns:1fr .4mm 1fr;
+    margin-bottom:8mm;
+  }
+  .case:first-child{padding-right:7mm;}
+  .case:last-child{padding-left:7mm;}
+  .spine{background:var(--rule);}
+  .case h3{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:700;
+    font-size:12.5pt;
+    margin:0 0 3mm;
+  }
+  .case p{margin:0;font-size:10.2pt;line-height:1.6;font-weight:300;}
+
+  /* ── the fact: reversed panel + its graphic ── */
+  .cut{margin-bottom:auto;}
+  .cut .graphic.compact{padding:5mm 8mm 3mm;}
+  .cut .graphic{
+    background:#fff;
+    border:.4mm solid var(--ink);
+    border-bottom:0;
+    padding:7mm 8mm 6mm;
+  }
+  .cut .body{
+    background:var(--panel);
+    color:#EDEEEA;
+    padding:6mm 8mm 7mm;
+  }
+  .cut .tag{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:700;
+    font-size:9.5pt;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:3mm;
+  }
+  .cut.green .tag{color:#6FD79B;}
+  .cut.amber .tag{color:#F0C065;}
+  .cut.red .tag{color:#F09098;}
+  .cut .body p{margin:0;font-size:10.6pt;line-height:1.6;font-weight:300;}
+
+  /* graphic primitives */
+  .gtitle{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:600;font-size:9pt;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-2);
+    margin:0 0 5mm;
+  }
+  .glabel{font-family:"Archivo",Helvetica,sans-serif;font-size:8.5pt;fill:var(--ink);}
+
+  .barrow{display:grid;grid-template-columns:26mm 1fr;align-items:center;gap:0 4mm;margin-bottom:3.4mm;}
+  .barrow .who{font-family:"Archivo",Helvetica,sans-serif;font-weight:600;font-size:9.5pt;}
+  .barrow .who small{display:block;font-weight:400;font-size:8pt;color:var(--ink-2);}
+  .track{position:relative;height:7mm;background:#EAEAE5;}
+  .fill{position:absolute;top:0;bottom:0;left:0;}
+  .fill.solid{background:var(--ink);}
+  .fill.ghost{background:repeating-linear-gradient(45deg,#C9CAC4 0 1.2mm,#EAEAE5 1.2mm 2.4mm);}
+  .val{
+    position:absolute;top:50%;transform:translateY(-50%);
+    font-family:"Archivo",Helvetica,sans-serif;font-weight:700;font-size:9pt;
+  }
+
+  .verdict{margin-top:9mm;padding-top:4mm;border-top:.5mm solid var(--ink);}
+  .verdict .lbl{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:600;font-size:9.5pt;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-2);
+  }
+  .writeline{border-bottom:.25mm solid var(--rule);height:8.5mm;margin-top:2.5mm;}
+  .writeline.short{width:58%;}
+
+  /* ── cover ── */
+  .cover{padding:0;justify-content:flex-start;}
+  .cover-top{background:var(--panel);color:var(--paper);padding:16mm 17mm 14mm;}
+  .cover h1{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:800;font-size:82pt;line-height:.84;
+    letter-spacing:-.035em;margin:0;
+  }
+  .cover .sub{
+    font-size:12.5pt;line-height:1.55;font-weight:300;
+    margin:8mm 0 0;max-width:11.5cm;color:#B9BCB6;
+  }
+  .cover-mid{padding:11mm 17mm;flex:1;}
+  .cover-foot{
+    padding:0 17mm 7mm;
+    font-family:"Poppins",Helvetica,sans-serif;font-weight:600;
+    font-size:6.5pt;letter-spacing:.02em;color:var(--ink-2);
+    line-height:1.5;text-transform:uppercase;white-space:nowrap;text-align:center;
+  }
+  .forwhom{
+    font-family:"Poppins",Helvetica,sans-serif;font-weight:600;
+    font-size:8.5pt;letter-spacing:.03em;text-transform:uppercase;
+    color:var(--ink-2);margin:0 0 5mm;
+  }
+  .specs{display:flex;border-top:.5mm solid var(--ink);border-bottom:.5mm solid var(--ink);}
+  .specs div{flex:1;padding:5mm 0;border-right:.25mm solid var(--rule);}
+  .specs div:last-child{border-right:0;padding-left:0;}
+  .specs div:not(:first-child){padding-left:5mm;}
+  .specs b{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:800;font-size:22pt;display:block;line-height:1;
+  }
+  .specs span{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-size:8.5pt;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--ink-2);display:block;margin-top:2mm;
+  }
+
+  /* ── rules page ── */
+  .h2{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:800;font-size:30pt;line-height:1;
+    letter-spacing:-.025em;margin:0 0 7mm;
+  }
+  .steps{counter-reset:s;list-style:none;padding:0;margin:0 0 9mm;max-width:14.5cm;}
+  .steps li{
+    counter-increment:s;
+    display:grid;grid-template-columns:10mm 1fr;gap:0 4mm;
+    padding:3.6mm 0;border-top:.25mm solid var(--hair);
+    font-size:10.4pt;line-height:1.52;font-weight:300;
+  }
+  .steps li::before{
+    content:counter(s,decimal-leading-zero);
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:800;font-size:13pt;line-height:1.3;
+  }
+  .steps li .t{display:block;min-width:0;}
+  .steps li b{font-weight:600;}
+
+  .heat{display:flex;border:.5mm solid var(--ink);margin-bottom:9mm;overflow:hidden;}
+  .heat div{flex:1 1 0;min-width:0;border-right:.25mm solid var(--rule);}
+  .heat div:last-child{border-right:0;}
+  .heat .bar{height:9mm;}
+  .heat .in{padding:4mm;}
+  .heat h4{font-family:"Archivo",Helvetica,sans-serif;font-size:11pt;font-weight:700;margin:0 0 1.5mm;white-space:nowrap;}
+  .heat p{margin:0;font-size:9.2pt;line-height:1.45;font-weight:300;color:var(--ink-2);}
+
+  .houserule{
+    margin-top:auto;background:var(--panel);color:#EDEEEA;
+    padding:7mm 8mm;font-size:12.5pt;line-height:1.5;
+  }
+  .houserule span{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:700;font-size:9.5pt;letter-spacing:.18em;
+    text-transform:uppercase;display:block;margin-bottom:3mm;color:#9AA0A6;
+  }
+
+  /* ── canon ── */
+  .canon-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 9mm;margin-bottom:8mm;}
+  .canon-grid h4{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-size:11.5pt;font-weight:700;margin:0 0 3mm;
+    padding-bottom:1.5mm;border-bottom:.5mm solid var(--ink);
+  }
+  .tier{display:flex;align-items:center;gap:4mm;padding:3.4mm 0;border-bottom:.25mm solid var(--hair);}
+  .tier b{font-family:"Archivo",Helvetica,sans-serif;font-weight:800;font-size:13pt;width:6mm;flex:none;}
+  .tier i{flex:1;border-bottom:.25mm dotted var(--rule);height:5mm;}
+  .sign{margin-top:auto;padding-top:5mm;border-top:.5mm solid var(--ink);display:grid;grid-template-columns:1.4fr 1fr;gap:9mm;}
+  .sign .lbl{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:600;font-size:9.5pt;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-2);
+  }
+  .foot{
+    margin-top:7mm;padding-top:3mm;border-top:.25mm solid var(--hair);
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-size:7.5pt;letter-spacing:.06em;color:var(--ink-2);text-transform:uppercase;
+  }
+
+  /* ── marca Quill ── */
+  .wm{font-family:"Poppins",Helvetica,sans-serif;font-weight:800;letter-spacing:-.05em;line-height:1.06;display:block;}
+  .cover-brand{
+    margin:0 17mm;
+    padding:6mm 0 13mm;
+    border-top:.5mm solid var(--ink);
+    display:flex;align-items:flex-end;justify-content:space-between;
+  }
+  .cover-brand .wm{font-size:32pt;color:var(--ink);margin-bottom:-2mm;}
+  .cover-brand .since{
+    font-family:"Poppins",Helvetica,sans-serif;font-weight:600;
+    font-size:8.5pt;color:var(--ink-2);text-align:right;line-height:1.35;
+  }
+  .brandline{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:10mm;
+    margin-top:7mm;padding-top:4mm;
+    border-top:.5mm solid var(--ink);
+  }
+  .brandline .wm{font-size:15pt;color:var(--ink);margin-bottom:-1mm;}
+  .folio{
+    font-family:"Poppins",Helvetica,sans-serif;font-weight:600;
+    font-size:8.5pt;color:var(--ink-2);text-align:right;line-height:1.35;
+  }
+  .folio b{display:block;font-weight:800;font-size:12pt;color:var(--ink);}
+  .folio b::after{content:counter(pg,decimal-leading-zero);}
+  .colophon{
+    color:var(--ink);
+    margin:7mm 0 0;
+    padding:6mm 0 0;
+    border-top:.5mm solid var(--ink);
+    display:flex;align-items:flex-end;justify-content:space-between;gap:8mm;
+  }
+  .colophon .right{display:flex;align-items:flex-end;gap:7mm;}
+  .colophon .wm{font-size:26pt;color:var(--ink);margin-bottom:-1.5mm;}
+  .colophon .txt{
+    font-family:"Poppins",Helvetica,sans-serif;font-weight:600;
+    font-size:6.5pt;letter-spacing:.01em;text-transform:uppercase;
+    line-height:1.7;text-align:right;color:var(--ink-2);white-space:nowrap;
+  }
+
+  /* ── ajuste a pantalla estrecha ── */
+  :root{--s:1;}
+  .frame{width:100%;display:flex;justify-content:center;}
+  .sheet{transform:scale(var(--s));transform-origin:top center;}
+
+  @media print{
+    body{background:#fff;}
+    :root{--s:1;}
+    .frame{display:block;height:auto !important;}
+    .sheet{margin:0;box-shadow:none;transform:none;page-break-after:always;}
+    .sheet:last-child{page-break-after:auto;}
+    @page{size:A4;margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 ▸ COVER -->
+<div class="frame"><section class="sheet cover">
+  <div class="cover-top">
+    <h1>El<br>Veredicto</h1>
+    <p class="sub">Ochenta y cinco discusiones de automovilismo que tu grupo lleva años teniendo sin resolver. Cada una con los dos mejores argumentos y un dato que complica a los dos.</p>
+  </div>
+  <div class="cover-mid">
+    <p class="forwhom" hidden></p>
+    <div class="specs">
+      <div><b>85</b><span>Discusiones</span></div>
+      <div><b>2&ndash;8</b><span>Personas</span></div>
+      <div><b>01</b><span>Edición</span></div>
+    </div>
+  </div>
+  <div class="cover-foot">
+    Publicación independiente · Producto no oficial
+  </div>
+  <div class="cover-brand">
+    <span class="wm">quill</span>
+    <span class="since">since<br>2024</span>
+  </div>
+</section></div>
+
+<!-- 2 ▸ HOW IT WORKS -->
+<div class="frame"><section class="sheet">
+  <div class="head">Instrucciones</div>
+  <h2 class="h2">Cómo se juega</h2>
+
+  <ol class="steps">
+    <li><span class="t"><b>Alguien lee la pregunta en voz alta.</b> Solo la pregunta. Todavía no los argumentos.</span></li>
+    <li><span class="t"><b>Todos escriben su respuesta antes de hablar.</b> No es opcional: si alguien habla primero, el resto ya no responde lo que pensaba.</span></li>
+    <li><span class="t"><b>Se revela al mismo tiempo.</b></span></li>
+    <li><span class="t"><b>Ahora se leen los argumentos y el dato.</b> Ese dato existe para incomodar a los dos bandos, no para darle la razón a nadie.</span></li>
+    <li><span class="t"><b>Cada uno defiende su postura un minuto.</b> Se permite cambiar de opinión. De hecho, es el punto.</span></li>
+    <li><span class="t"><b>Se firma el veredicto.</b> Queda por escrito y nadie puede decir después que siempre pensó otra cosa.</span></li>
+  </ol>
+
+  <div class="heat">
+    <div>
+      <div class="bar" style="background:var(--green)"></div>
+      <div class="in"><h4>Calentamiento</h4><p>Quince preguntas suaves para que el grupo entre en calor.</p></div>
+    </div>
+    <div>
+      <div class="bar" style="background:var(--amber)"></div>
+      <div class="in"><h4>Discusión</h4><p>Cincuenta donde los dos lados tienen un caso real.</p></div>
+    </div>
+    <div>
+      <div class="bar" style="background:var(--red)"></div>
+      <div class="in"><h4>Zona roja</h4><p>Veinte que dividen grupos. Guárdalas para el final.</p></div>
+    </div>
+  </div>
+
+  <div class="houserule">
+    <span>Regla de la casa</span>
+    Se discute lo que alguien hizo, nunca lo que alguien es. Si una pregunta no tiene un argumento honesto de los dos lados, no está en este libro.
+  </div>
+
+  <div class="brandline">
+    <span class="wm">quill</span>
+    <span class="folio">página<b></b></span></span>
+  </div>
+</section></div>
+
+<!-- 3 ▸ WARM-UP -->
+<div class="frame"><section class="sheet">
+  <div class="tab green"><span class="n">01</span><span class="w">Calentamiento</span></div>
+  <div class="head">Sonido · Era de motores</div>
+
+  <h2 class="question">¿La Fórmula 1 sonaba mejor antes?</h2>
+
+  <div class="cases">
+    <div class="case">
+      <h3>Sí, y no es nostalgia</h3>
+      <p>El sonido es la mitad del espectáculo en vivo. Un deporte que se vive en persona pierde algo irrecuperable cuando el ruido deja de golpearte en el pecho. Nadie cruza el mundo para escuchar eficiencia térmica.</p>
+    </div>
+    <div class="spine"></div>
+    <div class="case">
+      <h3>No, es exactamente nostalgia</h3>
+      <p>La memoria guarda el sonido y borra las carreras. Los motores de hoy son las máquinas más eficientes puestas en un coche de competición, y esta era ha dado campeonatos decididos en la última vuelta del año.</p>
+    </div>
+  </div>
+
+  <div class="cut green">
+    <div class="graphic">
+      <p class="gtitle">Revoluciones por minuto</p>
+      <svg viewBox="0 0 620 132" width="100%" role="img" aria-label="Escala de revoluciones comparando eras de motores">
+        <line x1="8" y1="104" x2="612" y2="104" stroke="#15181C" stroke-width="1.6"/>
+        <g font-family="Archivo, Helvetica, sans-serif" font-size="11" fill="#565C63">
+          <g stroke="#BFC0BA" stroke-width="1">
+            <line x1="8" y1="104" x2="8" y2="112"/>
+            <line x1="159" y1="104" x2="159" y2="112"/>
+            <line x1="310" y1="104" x2="310" y2="112"/>
+            <line x1="461" y1="104" x2="461" y2="112"/>
+            <line x1="612" y1="104" x2="612" y2="112"/>
+          </g>
+          <text x="8" y="126">0</text>
+          <text x="159" y="126" text-anchor="middle">5.000</text>
+          <text x="310" y="126" text-anchor="middle">10.000</text>
+          <text x="461" y="126" text-anchor="middle">15.000</text>
+          <text x="604" y="126" text-anchor="end">20.000</text>
+        </g>
+        <!-- real operating band today -->
+        <rect x="340" y="62" width="61" height="30" fill="#C08312"/>
+        <text x="370" y="54" text-anchor="middle" font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#15181C">Uso real hoy</text>
+        <!-- current limit -->
+        <line x1="461" y1="34" x2="461" y2="104" stroke="#15181C" stroke-width="2.4" stroke-dasharray="5 4"/>
+        <text x="455" y="28" text-anchor="end" font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#15181C">Límite actual 15.000</text>
+        <!-- V10 -->
+        <line x1="582" y1="34" x2="582" y2="104" stroke="#A31D28" stroke-width="3"/>
+        <text x="576" y="28" text-anchor="end" font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#A31D28">V10 de 2005 &mdash; 19.000</text>
+      </svg>
+    </div>
+    <div class="body">
+      <span class="tag">El dato incómodo</span>
+      <p>Los V10 de tres litros de 2005 entregaban su potencia máxima girando a 19.000 revoluciones por minuto. Las unidades actuales están limitadas a 15.000 — pero en carrera casi nunca pasan de 12.000, porque por encima de ahí no ganan nada. La diferencia real no es la que dice el reglamento. Es bastante mayor.</p>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div>
+    <div class="writeline short"></div>
+  </div>
+
+  <div class="brandline">
+    <span class="wm">quill</span>
+    <span class="folio">página<b></b></span></span>
+  </div>
+</section></div>
+
+<!-- 4 ▸ REAL DEBATE -->
+<div class="frame"><section class="sheet">
+  <div class="tab amber"><span class="n">18</span><span class="w">Discusión</span></div>
+  <div class="head">Legado · Compañeros</div>
+
+  <h2 class="question">Senna o Prost: ¿quién fue mejor?</h2>
+
+  <div class="cases">
+    <div class="case">
+      <h3>Senna</h3>
+      <p>Velocidad pura que nadie ha vuelto a igualar a una vuelta. Ganó en coches que no eran los mejores y convirtió la clasificación en una disciplina propia. La leyenda no es marketing: es lo que dice la gente que corrió contra él.</p>
+    </div>
+    <div class="spine"></div>
+    <div class="case">
+      <h3>Prost</h3>
+      <p>Cuatro títulos contra tres, y más victorias. Ganaba administrando neumáticos, combustible y riesgo, que es literalmente el trabajo. Le decían «El Profesor» como insulto y terminó siendo el mayor elogio del deporte.</p>
+    </div>
+  </div>
+
+  <div class="cut amber">
+    <div class="graphic">
+      <p class="gtitle">Temporada 1988 · Puntos sumados y puntos contados</p>
+      <div class="barrow">
+        <div class="who">Prost<small>7 victorias</small></div>
+        <div class="track">
+          <div class="fill ghost" style="width:100%"></div>
+          <div class="fill solid" style="width:82.9%"></div>
+          <span class="val" style="left:calc(82.9% - 12mm);color:#EFEFEB;">87</span>
+          <span class="val" style="right:2mm;color:#565C63;">105</span>
+        </div>
+      </div>
+      <div class="barrow">
+        <div class="who">Senna<small>8 victorias</small></div>
+        <div class="track">
+          <div class="fill ghost" style="width:89.5%"></div>
+          <div class="fill solid" style="width:85.7%"></div>
+          <span class="val" style="left:calc(85.7% - 12mm);color:#EFEFEB;">90</span>
+          <span class="val" style="left:calc(89.5% + 2mm);color:#565C63;">94</span>
+        </div>
+      </div>
+      <p style="margin:4mm 0 0;font-size:8.5pt;font-family:Archivo,Helvetica,sans-serif;color:#565C63;letter-spacing:.03em;">
+        Barra sólida: puntos que contaron. Trama: puntos descartados por el reglamento.
+      </p>
+    </div>
+    <div class="body">
+      <span class="tag">El dato incómodo</span>
+      <p>Prost sumó dieciocho puntos más que Senna a lo largo del año. No le contaron ninguno, porque el reglamento de entonces descartaba todo salvo los once mejores resultados de dieciséis. Senna es campeón por tres puntos y por una regla de descarte que dejó de existir en 1991.</p>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div>
+    <div class="writeline short"></div>
+  </div>
+
+  <div class="brandline">
+    <span class="wm">quill</span>
+    <span class="folio">página<b></b></span></span>
+  </div>
+</section></div>
+
+<!-- 5 ▸ NUCLEAR -->
+<div class="frame"><section class="sheet">
+  <div class="tab red"><span class="n">71</span><span class="w">Zona roja</span></div>
+  <div class="head">Dirección de carrera</div>
+
+  <h2 class="question">Abu Dhabi 2021: ¿el título fue robado?</h2>
+
+  <div class="cases">
+    <div class="case">
+      <h3>Sí</h3>
+      <p>El procedimiento no se aplicó como está escrito. Solo se dejó desdoblarse a los cinco coches entre los dos líderes, y se reanudó para una sola vuelta. Un campeonato de veintidós carreras se decidió con una interpretación que nunca se había usado.</p>
+    </div>
+    <div class="spine"></div>
+    <div class="case">
+      <h3>No</h3>
+      <p>Se cruzó una meta y alguien iba delante. Fue una decisión discutible de dirección de carrera, no un fraude. Y hubo veintiuna carreras antes, con cien momentos en los que el título se pudo cerrar sin depender de nadie.</p>
+    </div>
+  </div>
+
+  <div class="cut red">
+    <div class="graphic compact">
+      <p class="gtitle">Orden en pista antes de la reanudación</p>
+      <svg viewBox="0 6 620 84" width="100%" role="img" aria-label="Diagrama del orden en pista y qué coches pudieron desdoblarse">
+        <g font-family="Archivo, Helvetica, sans-serif">
+          <!-- leader 1 -->
+          <rect x="6" y="26" width="52" height="26" fill="#15181C"/>
+          <text x="32" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#EFEFEB">P1</text>
+          <!-- the five -->
+          <rect x="70" y="26" width="200" height="26" fill="#A31D28"/>
+          <text x="170" y="44" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">5 coches · desdoblados</text>
+          <!-- leader 2 -->
+          <rect x="282" y="26" width="52" height="26" fill="#15181C"/>
+          <text x="308" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#EFEFEB">P2</text>
+          <!-- the rest -->
+          
+          <rect x="346" y="26" width="268" height="26" fill="none" stroke="#9A9E98" stroke-width="1.4" stroke-dasharray="4 4"/>
+          <text x="480" y="44" text-anchor="middle" font-size="11.5" font-weight="600" fill="#565C63">Resto · NO desdoblados</text>
+          <!-- bracket -->
+          <path d="M6 60 L6 68 L334 68 L334 60" fill="none" stroke="#15181C" stroke-width="1.2"/>
+          <text x="170" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#15181C">Una vuelta de carrera entre estos dos</text>
+        </g>
+      </svg>
+    </div>
+    <div class="body">
+      <span class="tag">El dato incómodo</span>
+      <p>La FIA encontró dos incumplimientos, no uno: no dejar desdoblarse a todos los coches, y retirar el coche de seguridad sin completar la vuelta que exigía el artículo 48.12. Concluyó que hubo error humano de buena fe, declaró el resultado definitivo, apartó del cargo al director y después cambió «any» por «all» en el reglamento. Reescribió la regla y mantuvo el resultado. Los dos bandos citan el mismo informe.</p>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div>
+    <div class="writeline short"></div>
+  </div>
+
+  <div class="brandline">
+    <span class="wm">quill</span>
+    <span class="folio">página<b></b></span></span>
+  </div>
+</section></div>
+
+<!-- 6 ▸ CANON -->
+<div class="frame"><section class="sheet">
+  <div class="head">Cierre</div>
+  <h2 class="h2">Tu canon</h2>
+  <p style="margin:0 0 8mm;font-size:10.8pt;line-height:1.6;font-weight:300;max-width:14cm;color:var(--ink-2);">Después de las ochenta y cinco discusiones, esto es lo que quedó en pie. Se llena una sola vez y no se corrige.</p>
+
+  <div class="canon-grid">
+    <div>
+      <h4>Los cinco de siempre</h4>
+      <div class="tier"><b>1</b><i></i></div>
+      <div class="tier"><b>2</b><i></i></div>
+      <div class="tier"><b>3</b><i></i></div>
+      <div class="tier"><b>4</b><i></i></div>
+      <div class="tier"><b>5</b><i></i></div>
+    </div>
+    <div>
+      <h4>Mi parrilla imposible</h4>
+      <div class="tier"><b>1</b><i></i></div>
+      <div class="tier"><b>2</b><i></i></div>
+      <div class="tier"><b>3</b><i></i></div>
+      <div class="tier"><b>4</b><i></i></div>
+      <div class="tier"><b>5</b><i></i></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:8mm;">
+    <h4 style="font-family:Archivo,Helvetica,sans-serif;font-size:11.5pt;font-weight:700;margin:0 0 3mm;padding-bottom:1.5mm;border-bottom:.5mm solid var(--ink);">La opinión que cambié esta noche</h4>
+    <div class="writeline"></div>
+    <div class="writeline"></div>
+  </div>
+
+  <div class="sign">
+    <div><span class="lbl">Firma</span><div class="writeline"></div></div>
+    <div><span class="lbl">Fecha</span><div class="writeline"></div></div>
+  </div>
+
+  <div class="colophon">
+    <span class="wm">quill</span>
+    <span class="right"><span class="txt">
+      El Veredicto · Edición 01<br>
+      Investigado, escrito y diseñado por Quill Team<br>
+      Publicación independiente · Producto no oficial<br>
+      Sin asociación con Formula 1, la FIA, la FOM<br>
+      ni ningún equipo o piloto
+    </span>
+    <span class="folio">página<b></b></span></span>
+  </div>
+</section></div>
+
+<script>
+(function(){
+  // ajusta las hojas al ancho disponible sin romper la maqueta A4
+  function fit(){
+    var sheets = document.querySelectorAll('.sheet');
+    if(!sheets.length) return;
+    var w = document.documentElement.clientWidth;
+    var s = Math.min(1, (w - 16) / sheets[0].offsetWidth);
+    document.documentElement.style.setProperty('--s', s);
+    sheets.forEach(function(sh){
+      sh.parentElement.style.height = Math.ceil(sh.offsetHeight * s) + 'px';
+    });
+  }
+  // personalización: ?para=Nombre
+  try{
+    var quien = new URLSearchParams(location.search).get('para');
+    var el = document.querySelector('.forwhom');
+    if(quien && el){
+      el.textContent = 'Edición preparada para ' + quien;
+      el.hidden = false;
+    }
+  }catch(e){}
+
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
+  setTimeout(fit, 400); setTimeout(fit, 1500);
+  fit();
+})();
+</script>
+</body>
+</html>
