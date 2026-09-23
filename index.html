@@ -257,6 +257,11 @@
     font-size:11.5pt;font-weight:700;margin:0 0 3mm;
     padding-bottom:1.5mm;border-bottom:.5mm solid var(--ink);
   }
+  .canon-grid h4 em{
+    display:block;font-family:"Source Serif 4",Georgia,serif;
+    font-size:8.8pt;font-weight:300;font-style:italic;
+    color:var(--ink-2);margin-top:1mm;
+  }
   .tier{display:flex;align-items:center;gap:4mm;padding:3.4mm 0;border-bottom:.25mm solid var(--hair);}
   .tier b{font-family:"Archivo",Helvetica,sans-serif;font-weight:800;font-size:13pt;width:6mm;flex:none;}
   .tier i{flex:1;border-bottom:.25mm dotted var(--rule);height:5mm;}
@@ -395,55 +400,57 @@
 <!-- 3 ▸ WARM-UP -->
 <div class="frame"><section class="sheet">
   <div class="tab green"><span class="n">01</span><span class="w">Calentamiento</span></div>
-  <div class="head">Sonido · Era de motores</div>
+  <div class="head">Reglamento · Eras de motor</div>
 
-  <h2 class="question">¿La Fórmula 1 sonaba mejor antes?</h2>
+  <h2 class="question">¿V8 o híbrido: qué motor fue mejor?</h2>
 
   <div class="cases">
     <div class="case">
-      <h3>Sí, y no es nostalgia</h3>
-      <p>El sonido es la mitad del espectáculo en vivo. Un deporte que se vive en persona pierde algo irrecuperable cuando el ruido deja de golpearte en el pecho. Nadie cruza el mundo para escuchar eficiencia térmica.</p>
+      <h3>El V8</h3>
+      <p>Ocho cilindros, sin batería y sin recuperación de energía. Un motor que casi cualquier equipo podía comprar sin depender de un fabricante. Eso dejaba la competencia donde debe estar: en el chasis y en el piloto.</p>
     </div>
     <div class="spine"></div>
     <div class="case">
-      <h3>No, es exactamente nostalgia</h3>
-      <p>La memoria guarda el sonido y borra las carreras. Los motores de hoy son las máquinas más eficientes puestas en un coche de competición, y esta era ha dado campeonatos decididos en la última vuelta del año.</p>
+      <h3>El híbrido</h3>
+      <p>Es la mejor máquina que ha construido este deporte. Cerca de 1.000 caballos contra los 750 del V8, con un 30% menos de combustible y más del 50% de eficiencia térmica, cuando el V8 apenas rozaba el 30%.</p>
     </div>
   </div>
 
   <div class="cut green">
     <div class="graphic">
-      <p class="gtitle">Revoluciones por minuto</p>
-      <svg viewBox="0 0 620 132" width="100%" role="img" aria-label="Escala de revoluciones comparando eras de motores">
-        <line x1="8" y1="104" x2="612" y2="104" stroke="#15181C" stroke-width="1.6"/>
-        <g font-family="Archivo, Helvetica, sans-serif" font-size="11" fill="#565C63">
-          <g stroke="#BFC0BA" stroke-width="1">
-            <line x1="8" y1="104" x2="8" y2="112"/>
-            <line x1="159" y1="104" x2="159" y2="112"/>
-            <line x1="310" y1="104" x2="310" y2="112"/>
-            <line x1="461" y1="104" x2="461" y2="112"/>
-            <line x1="612" y1="104" x2="612" y2="112"/>
+      <p class="gtitle">Campeón de constructores · ocho temporadas por era</p>
+      <svg viewBox="0 0 620 118" width="100%" role="img" aria-label="Campeones de constructores en la era V8 y en la era híbrida">
+        <g font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="600">
+          <text x="0" y="10" fill="#565C63">V8 · 2006 a 2013</text>
+          <g font-size="10.5">
+            <rect x="0"   y="18" width="74" height="24" fill="#7D838A"/><text x="37"  y="34" text-anchor="middle" fill="#fff">REN</text>
+            <rect x="78"  y="18" width="74" height="24" fill="#4A5057"/><text x="115" y="34" text-anchor="middle" fill="#fff">FER</text>
+            <rect x="156" y="18" width="74" height="24" fill="#4A5057"/><text x="193" y="34" text-anchor="middle" fill="#fff">FER</text>
+            <rect x="234" y="18" width="74" height="24" fill="#B6BBC0"/><text x="271" y="34" text-anchor="middle" fill="#15181C">BRA</text>
+            <rect x="312" y="18" width="74" height="24" fill="#22272D"/><text x="349" y="34" text-anchor="middle" fill="#fff">RBR</text>
+            <rect x="390" y="18" width="74" height="24" fill="#22272D"/><text x="427" y="34" text-anchor="middle" fill="#fff">RBR</text>
+            <rect x="468" y="18" width="74" height="24" fill="#22272D"/><text x="505" y="34" text-anchor="middle" fill="#fff">RBR</text>
+            <rect x="546" y="18" width="74" height="24" fill="#22272D"/><text x="583" y="34" text-anchor="middle" fill="#fff">RBR</text>
           </g>
-          <text x="8" y="126">0</text>
-          <text x="159" y="126" text-anchor="middle">5.000</text>
-          <text x="310" y="126" text-anchor="middle">10.000</text>
-          <text x="461" y="126" text-anchor="middle">15.000</text>
-          <text x="604" y="126" text-anchor="end">20.000</text>
+          <text x="620" y="56" text-anchor="end" font-size="10.5" font-weight="700" fill="#15181C">4 equipos distintos</text>
+
+          <text x="0" y="78" fill="#565C63">Híbrido · 2014 a 2021</text>
+          <g font-size="10.5">
+            <rect x="0"   y="86" width="74" height="24" fill="#15181C"/><text x="37"  y="102" text-anchor="middle" fill="#fff">MER</text>
+            <rect x="78"  y="86" width="74" height="24" fill="#15181C"/><text x="115" y="102" text-anchor="middle" fill="#fff">MER</text>
+            <rect x="156" y="86" width="74" height="24" fill="#15181C"/><text x="193" y="102" text-anchor="middle" fill="#fff">MER</text>
+            <rect x="234" y="86" width="74" height="24" fill="#15181C"/><text x="271" y="102" text-anchor="middle" fill="#fff">MER</text>
+            <rect x="312" y="86" width="74" height="24" fill="#15181C"/><text x="349" y="102" text-anchor="middle" fill="#fff">MER</text>
+            <rect x="390" y="86" width="74" height="24" fill="#15181C"/><text x="427" y="102" text-anchor="middle" fill="#fff">MER</text>
+            <rect x="468" y="86" width="74" height="24" fill="#15181C"/><text x="505" y="102" text-anchor="middle" fill="#fff">MER</text>
+            <rect x="546" y="86" width="74" height="24" fill="#15181C"/><text x="583" y="102" text-anchor="middle" fill="#fff">MER</text>
+          </g>
         </g>
-        <!-- real operating band today -->
-        <rect x="340" y="62" width="61" height="30" fill="#C08312"/>
-        <text x="370" y="54" text-anchor="middle" font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#15181C">Uso real hoy</text>
-        <!-- current limit -->
-        <line x1="461" y1="34" x2="461" y2="104" stroke="#15181C" stroke-width="2.4" stroke-dasharray="5 4"/>
-        <text x="455" y="28" text-anchor="end" font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="600" fill="#15181C">Límite actual 15.000</text>
-        <!-- V10 -->
-        <line x1="582" y1="34" x2="582" y2="104" stroke="#A31D28" stroke-width="3"/>
-        <text x="576" y="28" text-anchor="end" font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#A31D28">V10 de 2005 &mdash; 19.000</text>
       </svg>
     </div>
     <div class="body">
       <span class="tag">El dato incómodo</span>
-      <p>Los V10 de tres litros de 2005 entregaban su potencia máxima girando a 19.000 revoluciones por minuto. Las unidades actuales están limitadas a 15.000 — pero en carrera casi nunca pasan de 12.000, porque por encima de ahí no ganan nada. La diferencia real no es la que dice el reglamento. Es bastante mayor.</p>
+      <p>El híbrido ganó el argumento técnico y perdió el deportivo. En las ocho temporadas del V8 ganaron el constructores cuatro equipos distintos, uno de ellos en su primera y única temporada. En las ocho primeras del híbrido ganó uno solo, ocho veces seguidas, y ese récord sigue en pie. Y la FIA ya anunció que el V8 vuelve a más tardar en 2031, con la potestad de imponerlo sin el voto de los fabricantes.</p>
     </div>
   </div>
 
@@ -455,7 +462,7 @@
 
   <div class="brandline">
     <span class="wm">quill</span>
-    <span class="folio">página<b></b></span></span>
+    <span class="folio">página<b></b></span>
   </div>
 </section></div>
 
@@ -590,7 +597,7 @@
 
   <div class="canon-grid">
     <div>
-      <h4>Los cinco de siempre</h4>
+      <h4>Los cinco de siempre<em>Tu top 5 de pilotos de la historia</em></h4>
       <div class="tier"><b>1</b><i></i></div>
       <div class="tier"><b>2</b><i></i></div>
       <div class="tier"><b>3</b><i></i></div>
@@ -598,7 +605,7 @@
       <div class="tier"><b>5</b><i></i></div>
     </div>
     <div>
-      <h4>Mi parrilla imposible</h4>
+      <h4>Mi parrilla imposible<em>Cinco pilotos de épocas distintas, en la misma carrera</em></h4>
       <div class="tier"><b>1</b><i></i></div>
       <div class="tier"><b>2</b><i></i></div>
       <div class="tier"><b>3</b><i></i></div>
