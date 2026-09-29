@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>El Veredicto — v2</title>
+<title>El Veredicto · v2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Poppins:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
   *{box-sizing:border-box;}
 
   body{
-    counter-reset:pg;
+    counter-reset:pg q;
     margin:0;
     background:#5F615C;
     font-family:"Source Serif 4",Georgia,serif;
@@ -55,6 +55,8 @@
     text-align:center;
     color:#fff;
   }
+  .sheet.q{counter-increment:pg q;}
+  .tab .n::after{content:counter(q,decimal-leading-zero);}
   .tab .n{
     font-family:"Archivo",Helvetica,sans-serif;
     font-weight:800;
@@ -81,9 +83,10 @@
     letter-spacing:.08em;
     text-transform:uppercase;
     color:var(--ink-2);
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    white-space:nowrap;overflow:visible;
+    line-height:1.5;
     padding-right:20mm;
-    padding-bottom:2.5mm;
+    padding-bottom:3mm;
     border-bottom:.5mm solid var(--ink);
     margin-bottom:9mm;
   }
@@ -164,6 +167,18 @@
     font-family:"Archivo",Helvetica,sans-serif;font-weight:700;font-size:9pt;
   }
 
+  /* cifra grande: tratamiento ligero para las páginas sin gráfico */
+  .cut .figure{
+    background:#fff;border:.4mm solid var(--ink);border-bottom:0;
+    padding:6.5mm 8mm;display:flex;align-items:center;gap:7mm;
+  }
+  .cut .figure b{
+    font-family:"Archivo",Helvetica,sans-serif;font-weight:800;
+    font-size:44pt;line-height:1;letter-spacing:-.035em;flex:none;
+  }
+  .cut .figure span{font-size:11pt;line-height:1.45;font-weight:300;}
+
+
   .verdict{margin-top:9mm;padding-top:4mm;border-top:.5mm solid var(--ink);}
   .verdict .lbl{
     font-family:"Archivo",Helvetica,sans-serif;
@@ -181,9 +196,14 @@
     font-weight:800;font-size:82pt;line-height:.84;
     letter-spacing:-.035em;margin:0;
   }
+  .cover .kicker{
+    font-family:"Archivo",Helvetica,sans-serif;
+    font-weight:600;font-size:15pt;letter-spacing:-.01em;
+    margin:8mm 0 0;color:var(--paper);
+  }
   .cover .sub{
     font-size:12.5pt;line-height:1.55;font-weight:300;
-    margin:8mm 0 0;max-width:11.5cm;color:#B9BCB6;
+    margin:4mm 0 0;max-width:11.5cm;color:#B9BCB6;
   }
   .cover-mid{padding:11mm 17mm;flex:1;}
   .cover-foot{
@@ -338,18 +358,19 @@
 <div class="frame"><section class="sheet cover">
   <div class="cover-top">
     <h1>El<br>Veredicto</h1>
-    <p class="sub">Ochenta y cinco discusiones de automovilismo que tu grupo lleva años teniendo sin resolver. Cada una con los dos mejores argumentos y un dato que complica a los dos.</p>
+    <p class="kicker">Ochenta y cinco discusiones de Fórmula 1</p>
+    <p class="sub">Las que tu grupo lleva años teniendo sin resolver. Cada una con los dos mejores argumentos de cada lado y un dato que complica a los dos.</p>
   </div>
   <div class="cover-mid">
     <p class="forwhom" hidden></p>
     <div class="specs">
-      <div><b>85</b><span>Discusiones</span></div>
+      <div><b>85</b><span>Discusiones de F1</span></div>
       <div><b>2&ndash;8</b><span>Personas</span></div>
       <div><b>01</b><span>Edición</span></div>
     </div>
   </div>
   <div class="cover-foot">
-    Publicación independiente · Producto no oficial
+    Publicación independiente y no oficial · Sin asociación con Formula 1 o la FIA
   </div>
   <div class="cover-brand">
     <span class="wm">quill</span>
@@ -397,27 +418,32 @@
   </div>
 </section></div>
 
-<!-- 3 ▸ WARM-UP -->
-<div class="frame"><section class="sheet">
-  <div class="tab green"><span class="n">01</span><span class="w">Calentamiento</span></div>
+
+<!-- ═══ PREGUNTAS ═══
+     COMO AÑADIR UNA: copia un bloque completo, desde la apertura de frame
+     hasta su cierre, y pégalo en el lugar que le corresponda por sección.
+
+     El número de la pestaña y el folio se calculan solos. No los toques.
+
+     Colores por sección: green = Calentamiento, amber = Discusion,
+     red = Zona roja. El color va en la pestaña y en el bloque del dato.
+
+     Si la pregunta lleva gráfico, el bloque graphic va antes del bloque body.
+     Si no lleva, el bloque body va solo y la pagina funciona igual.
+
+     Limite: unas 175 palabras por página, contando todo.
+-->
+
+<div class="frame"><section class="sheet q">
+  <div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
   <div class="head">Reglamento · Eras de motor</div>
-
   <h2 class="question">¿V8 o híbrido: qué motor fue mejor?</h2>
-
   <div class="cases">
-    <div class="case">
-      <h3>El V8</h3>
-      <p>Ocho cilindros, sin batería y sin recuperación de energía. Un motor que casi cualquier equipo podía comprar sin depender de un fabricante. Eso dejaba la competencia donde debe estar: en el chasis y en el piloto.</p>
-    </div>
+    <div class="case"><h3>El V8</h3><p>Ocho cilindros, sin batería y sin recuperación de energía. Un motor que casi cualquier equipo podía comprar sin depender de un fabricante. Eso dejaba la competencia donde debe estar: en el chasis y en el piloto.</p></div>
     <div class="spine"></div>
-    <div class="case">
-      <h3>El híbrido</h3>
-      <p>Es la mejor máquina que ha construido este deporte. Cerca de 1.000 caballos contra los 750 del V8, con un 30% menos de combustible y más del 50% de eficiencia térmica, cuando el V8 apenas rozaba el 30%.</p>
-    </div>
+    <div class="case"><h3>El híbrido</h3><p>Es la mejor máquina que ha construido este deporte. Cerca de 1.000 caballos contra los 750 del V8, con un 30% menos de combustible y más del 50% de eficiencia térmica, cuando el V8 apenas rozaba el 30%.</p></div>
   </div>
-
-  <div class="cut green">
-    <div class="graphic">
+  <div class="cut green"><div class="graphic">
       <p class="gtitle">Campeón de constructores · ocho temporadas por era</p>
       <svg viewBox="0 0 620 118" width="100%" role="img" aria-label="Campeones de constructores en la era V8 y en la era híbrida">
         <g font-family="Archivo, Helvetica, sans-serif" font-size="11" font-weight="600">
@@ -448,45 +474,287 @@
         </g>
       </svg>
     </div>
-    <div class="body">
-      <span class="tag">El dato incómodo</span>
-      <p>El híbrido ganó el argumento técnico y perdió el deportivo. En las ocho temporadas del V8 ganaron el constructores cuatro equipos distintos, uno de ellos en su primera y única temporada. En las ocho primeras del híbrido ganó uno solo, ocho veces seguidas, y ese récord sigue en pie. Y la FIA ya anunció que el V8 vuelve a más tardar en 2031, con la potestad de imponerlo sin el voto de los fabricantes.</p>
-    </div>
+    <div class="body"><span class="tag">El dato incómodo</span><p>El híbrido ganó el argumento técnico y perdió el deportivo. En las ocho temporadas del V8 ganaron el constructores cuatro equipos distintos, uno de ellos en su primera y única temporada. En las ocho primeras del híbrido ganó uno solo, ocho veces seguidas, y ese récord sigue en pie. Y la FIA ya anunció que el V8 vuelve a más tardar en 2031, con la potestad de imponerlo sin el voto de los fabricantes.</p></div>
   </div>
-
-  <div class="verdict">
-    <span class="lbl">Mi veredicto</span>
-    <div class="writeline"></div>
-    <div class="writeline short"></div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
   </div>
-
-  <div class="brandline">
-    <span class="wm">quill</span>
-    <span class="folio">página<b></b></span>
-  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
 </section></div>
 
-<!-- 4 ▸ REAL DEBATE -->
-<div class="frame"><section class="sheet">
-  <div class="tab amber"><span class="n">18</span><span class="w">Discusión</span></div>
-  <div class="head">Legado · Compañeros</div>
-
-  <h2 class="question">Senna o Prost: ¿quién fue mejor?</h2>
-
+<div class="frame"><section class="sheet q">
+  <div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+  <div class="head">Afición · Lealtad</div>
+  <h2 class="question">¿Se vale cambiar de equipo favorito?</h2>
   <div class="cases">
-    <div class="case">
-      <h3>Senna</h3>
-      <p>Velocidad pura que nadie ha vuelto a igualar a una vuelta. Ganó en coches que no eran los mejores y convirtió la clasificación en una disciplina propia. La leyenda no es marketing: es lo que dice la gente que corrió contra él.</p>
-    </div>
+    <div class="case"><h3>Sí, y sin culpa</h3><p>Nadie firmó nada. Sigues un deporte para disfrutarlo, y si el equipo que elegiste a los doce años lleva quince siendo irrelevante, aguantar por orgullo no te hace mejor aficionado. Solo te amarga los domingos.</p></div>
     <div class="spine"></div>
-    <div class="case">
-      <h3>Prost</h3>
-      <p>Cuatro títulos contra tres, y más victorias. Ganaba administrando neumáticos, combustible y riesgo, que es literalmente el trabajo. Le decían «El Profesor» como insulto y terminó siendo el mayor elogio del deporte.</p>
-    </div>
+    <div class="case"><h3>No, eso no se hace</h3><p>Cualquiera apoya al que gana. La afición se mide en los años malos, no en los buenos. Si te vas cuando las cosas se ponen feas, nunca fuiste aficionado de ese equipo: fuiste aficionado de ganar.</p></div>
   </div>
+  <div class="cut green">
+    <div class="body"><span class="tag">El dato incómodo</span><p>El equipo que hoy es Aston Martin entró a la Fórmula 1 en 1991 como Jordan. Después fue Midland, Spyker, Force India y Racing Point. Seis nombres en la misma fábrica de Silverstone. Y cuando Force India quebró en 2018, la FIA no permitió traspasar su inscripción, así que la entrada original de Jordan se cerró oficialmente. Quien lleva treinta años siendo fiel a ese equipo ya cambió cinco veces de equipo sin moverse del sitio.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Calendario · Horarios</div>
+<h2 class="question">Carreras nocturnas: ¿espectáculo o favor a la TV europea?</h2>
+<div class="cases">
+<div class="case"><h3>Espectáculo</h3><p>Un circuito iluminado sobre una ciudad de noche es la imagen más reconocible del calendario moderno. Singapur estrenó la idea en 2008 y el resto la copió porque funciona: la carrera se ve distinta y se vive distinta.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Horario de televisión</h3><p>Si fuera por estética, también se correría de noche en Europa. Se corre de noche justo donde la diferencia horaria lo pide, para que la salida caiga en la tarde europea. Son focos al servicio de un horario.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>Singapur sale a las ocho de la noche, las dos de la tarde en Europa central. Los equipos ni siquiera cambian de reloj: pasan la semana en hora europea y desayunan a las dos de la tarde. Pero Las Vegas, también de noche, salía a las diez, las siete de la mañana en Europa, y en 2025 se adelantó a las ocho pensando en el público estadounidense. La noche se programa para quien mira, y Europa ya no es el único que mira.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Reglamento · Adelantamientos</div>
+<h2 class="question">¿El DRS salvó los adelantamientos o los volvió falsos?</h2>
+<div class="cases">
+<div class="case"><h3>Los salvó</h3><p>Antes de 2011 seguir de cerca a otro coche era casi imposible por el aire sucio. En 2010 hubo 452 adelantamientos en toda la temporada; en 2011, con el alerón móvil, 821. Sin esa ayuda muchos domingos eran una procesión.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Los volvió falsos</h3><p>Abrir el alerón porque vas a menos de un segundo no es adelantar: es que te abran la puerta. El que defiende no puede hacer nada, y un adelantamiento sin defensa posible se parece mucho a uno regalado.</p></div>
+</div>
+<div class="cut green">
+<div class="graphic compact"><p class="gtitle">Adelantamientos en toda la temporada</p>
+<svg viewBox="0 0 620 130" width="100%" role="img" aria-label="Adelantamientos por temporada de 2008 a 2012">
+<g font-family="Archivo, Helvetica, sans-serif">
+<line x1="0" y1="112" x2="620" y2="112" stroke="#15181C" stroke-width="1.2"/>
+<rect x="0" y="85" width="84" height="27" fill="#15181C"/><text x="42" y="80" text-anchor="middle" font-size="10.5" font-weight="700" fill="#15181C">267</text><text x="42" y="126" text-anchor="middle" font-size="9.5" fill="#565C63" font-weight="400">2008</text><rect x="134" y="91" width="84" height="21" fill="#15181C"/><text x="176" y="86" text-anchor="middle" font-size="10.5" font-weight="700" fill="#15181C">211</text><text x="176" y="126" text-anchor="middle" font-size="9.5" fill="#565C63" font-weight="400">2009</text><rect x="268" y="67" width="84" height="45" fill="#15181C"/><text x="310" y="62" text-anchor="middle" font-size="10.5" font-weight="700" fill="#15181C">452</text><text x="310" y="126" text-anchor="middle" font-size="9.5" fill="#565C63" font-weight="400">2010</text><rect x="402" y="30" width="84" height="82" fill="#16643A"/><text x="444" y="25" text-anchor="middle" font-size="10.5" font-weight="700" fill="#16643A">821</text><text x="444" y="126" text-anchor="middle" font-size="9.5" fill="#16643A" font-weight="600">2011</text><rect x="536" y="25" width="84" height="87" fill="#15181C"/><text x="578" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#15181C">870</text><text x="578" y="126" text-anchor="middle" font-size="9.5" fill="#565C63" font-weight="400">2012</text>
+</g></svg></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>El DRS nunca estuvo solo. Llegó en 2011, el mismo año que Pirelli entró con neumáticos diseñados para degradarse rápido, y nadie ha podido separar qué parte del salto fue de cada uno. Un estudio de Mercedes sobre 18 de las 19 carreras de ese año contó 441 adelantamientos normales y 363 con DRS: más de la mitad no lo necesitó. Tras quince temporadas, la F1 lo eliminó en 2026. Su reemplazo, el modo adelantamiento, se activa con la misma condición: ir a menos de un segundo del de delante.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Pilotos · Presión</div>
+<h2 class="question">¿Correr en casa es ventaja o presión?</h2>
+<div class="cases">
+<div class="case"><h3>Ventaja</h3><p>Conoces la pista de memoria, duermes en tu cama y tienes a la tribuna entera empujando. Lewis Hamilton ha ganado nueve veces en Silverstone, un récord de victorias en un mismo Gran Premio.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Presión</h3><p>Todos te conocen, todos esperan que ganes y cada error se ve desde la tribuna donde está tu familia. En casa no corres contra veinte pilotos: corres contra lo que esperan de ti.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>Charles Leclerc nació en Mónaco y en sus seis primeros intentos allí no subió al podio ni una vez. En 2021 hizo la pole y no pudo tomar la salida por una avería que venía de su propio choque en clasificación. En 2022 salió desde la pole y un error de estrategia de Ferrari lo dejó cuarto. Ganó al séptimo intento, en 2024, y fue el primer monegasco en ganar allí desde Louis Chiron en 1931. Contó que en las últimas vueltas lloraba y casi no veía.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Calendario · Temporada</div>
+<h2 class="question">¿24 carreras por temporada son demasiadas?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, es insostenible</h3><p>Temporadas que empiezan en marzo y terminan en diciembre, fines de semana de carrera encadenados y mecánicos que pasan más noches en hoteles que en casa. Verstappen, Alonso y Hamilton lo han dicho en público: el límite ya se pasó.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, es lo justo</h3><p>Hay más aficionados que nunca y más países que quieren una carrera. Además, casi desaparecieron los test durante la temporada, que antes llenaban las semanas libres. El trabajo total no creció tanto como el calendario.</p></div>
+</div>
+<div class="cut green">
+<div class="graphic compact"><p class="gtitle">Grandes Premios por temporada</p>
+<svg viewBox="0 0 620 148" width="100%" role="img" aria-label="Carreras por temporada: 19 en 2015, 21 en 2016 y 24 en 2025; en negro, las carreras por encima del límite que señaló Wolff en 2015">
+<g font-family="Archivo, Helvetica, sans-serif">
+<rect x="474" y="2" width="9" height="9" fill="#15181C"/><text x="488" y="10" font-size="9.5" fill="#565C63">Por encima de ese límite</text>
+<rect x="30" y="56.6" width="120" height="71.4" fill="#16643A"/><text x="90" y="51" text-anchor="middle" font-size="12" font-weight="700" fill="#16643A">19</text><text x="90" y="143" text-anchor="middle" font-size="10" fill="#16643A" font-weight="600">2015</text><rect x="265" y="56.6" width="120" height="71.4" fill="#C9CAC4"/><rect x="265" y="49.0" width="120" height="7.5" fill="#15181C"/><text x="325" y="43" text-anchor="middle" font-size="12" font-weight="700" fill="#15181C">21</text><text x="325" y="143" text-anchor="middle" font-size="10" fill="#565C63" font-weight="400">2016</text><rect x="500" y="56.6" width="120" height="71.4" fill="#C9CAC4"/><rect x="500" y="37.8" width="120" height="18.8" fill="#15181C"/><text x="560" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="#15181C">24</text><text x="560" y="143" text-anchor="middle" font-size="10" fill="#565C63" font-weight="400">2025</text>
+<line x1="30" y1="56.6" x2="620" y2="56.6" stroke="#16643A" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="164" y="71" font-size="9.5" font-weight="600" fill="#16643A">Wolff, 2015:</text><text x="164" y="83" font-size="9.5" font-weight="600" fill="#16643A">ya es el límite</text>
+<line x1="0" y1="128" x2="620" y2="128" stroke="#15181C" stroke-width="1.2"/>
+</g></svg></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>En 2015, con 19 carreras, Toto Wolff avisó que su gente ya estaba en el límite físico y mental, y que pasar a 21 era sencillamente inviable. En 2025 fueron 24, y el acuerdo con los equipos vigente hasta ese año permitía 25. El presidente de la FIA dice que para una más harían falta dos equipos que se turnen. Y Franz Tost, exjefe de Toro Rosso, cree que la queja es una broma: antes se probaba de martes a jueves después de cada carrera y nadie decía nada.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Pilotos · Físico</div>
+<h2 class="question">¿Los pilotos de F1 son atletas de verdad?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, de élite</h3><p>Soportan cerca de 5G en las curvas rápidas durante casi dos horas, a veces con la cabina por encima de los 50 grados. Pocos deportes le piden tanto al cuello, al corazón y a la cabeza a la vez.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, manda el coche</h3><p>Un atleta se mide por lo que hace su cuerpo. En F1, el mismo piloto puede ganar o terminar último según el coche que le toque. La exigencia física es real, pero no decide quién gana.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>Qatar 2023 lo puso a prueba. Con calor y humedad extremos, Logan Sargeant abandonó por deshidratación, Esteban Ocon vomitó dentro del casco, Lance Stroll dijo que se estaba desmayando y George Russell calculó más de 50 grados en la cabina. La FIA respondió con chalecos refrigerantes: desde 2025 los coches deben llevarlos cuando se esperan más de 31 grados. Pero el piloto puede elegir no usarlo, y en Singapur 2025, la primera vez que se aplicó, Leclerc todavía dudaba si ponérselo.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Estrategia · Boxes</div>
+<h2 class="question">¿Obligar a más paradas en boxes mejora las carreras?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, agita el orden</h3><p>Cuando un juego de neumáticos aguanta casi toda la carrera, la estrategia desaparece y el domingo copia al sábado. Una parada obligatoria extra abre ventanas, errores y apuestas donde antes había una procesión.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, es artificial</h3><p>Si hace falta una regla para que pase algo, el problema está en otra parte: coches demasiado grandes, pistas estrechas, neumáticos demasiado duros. Obligar a parar solo traslada el aburrimiento al pit lane.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>Mónaco lo probó en 2025: cada piloto debía usar tres juegos de neumáticos, es decir, parar dos veces. Racing Bulls y luego Williams respondieron poniendo a uno de sus pilotos a rodar varios segundos más lento para frenar al grupo y que su compañero parara sin perder posición. Funcionó: los dos equipos metieron sus dos coches en los puntos. Carlos Sainz, uno de los beneficiados, pidió que esa manipulación no se repitiera. La regla duró un solo año.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Formato · Sábado y domingo</div>
+<h2 class="question">¿Qué vale más, la clasificación o la carrera?</h2>
+<div class="cases">
+<div class="case"><h3>La clasificación</h3><p>Una vuelta, sin estrategia ni tráfico: el piloto y el coche al límite, sin excusas. Es la medida más pura de la velocidad, y por eso los grandes la valoran casi tanto como una victoria.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>La carrera</h3><p>Los puntos se dan el domingo. Dos horas de neumáticos, estrategia, adelantamientos y presión dicen más de un piloto que 80 segundos perfectos. La pole no gana títulos.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>Ni en Mónaco, donde se dice que la carrera se decide el sábado, la pole garantiza la victoria: hasta 2014, solo 27 de los 60 ganadores habían salido primeros, un 45%. Eso sí, entre 2009 y 2019 el ganador salió de la primera fila en todas las ediciones menos una. La clasificación no te da la carrera, pero sin ella es muy difícil ganarla.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Calendario · Mundo</div>
+<h2 class="question">¿La F1 debería volver a África?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, cuanto antes</h3><p>Es el único continente habitado sin Gran Premio. Una categoría que se llama mundial y visita tres veces Estados Unidos no puede seguir saltándose a más de mil millones de personas.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No a cualquier precio</h3><p>Un Gran Premio necesita un circuito de primer nivel, dinero y estabilidad. Ir por ir, a una pista sin terminar o a una zona en conflicto, sería una mala carrera y un mal mensaje.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>La F1 no corre en África desde 1993, en Kyalami. Sudáfrica estuvo cerca de volver, pero el acuerdo se cayó en 2022. En diciembre de 2024 Ruanda presentó su candidatura con un circuito todavía por construir, y dos meses después la República Democrática del Congo pidió a la F1 romper las conversaciones por el conflicto en el este de su país. Lewis Hamilton ha dicho que quiere seguir corriendo hasta ver una carrera en África.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Reglamento · Repostaje</div>
+<h2 class="question">¿Debería volver el repostaje?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, más estrategia</h3><p>Con repostaje, cada equipo elegía entre salir ligero y parar más o cargar y parar menos. Había carreras que se ganaban en el pit lane con cálculo, no solo con neumáticos.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, era peligroso y caro</h3><p>Cargar combustible a presión junto a un motor caliente y un grupo de mecánicos es buscar un incendio. Además, llevar ese equipo a cada carrera costaba dinero que hoy se gasta en otras cosas.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>La imagen que más se usa contra el repostaje es la del Benetton de Jos Verstappen, el padre de Max, envuelto en llamas en Hockenheim 1994, el año en que volvió a permitirse. La investigación reveló que Benetton había quitado un filtro de la manguera, algo que aceleraba la carga. Aun así, el equipo salió del caso sin sanción deportiva. La F1 prohibió el repostaje en 2010 y no ha vuelto.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Mercado · Pilotos</div>
+<h2 class="question">¿La F1 necesita un piloto estadounidense?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, para crecer allí</h3><p>Estados Unidos tiene tres Grandes Premios y dos equipos propios, pero nadie de su país en la parrilla. Ningún mercado se conquista del todo sin un ídolo local al que seguir cada domingo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, necesita al mejor</h3><p>Un asiento de F1 no es una cuota. El público estadounidense ya llegó sin piloto propio, por el espectáculo y por Netflix. Poner a alguien por su pasaporte sería pagar por algo que ya se tiene.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>El último estadounidense que ganó una carrera fue Mario Andretti, en 1978. Cadillac nació para ser el equipo americano de la parrilla, y el propio Andretti, desde su consejo, decía que tener al menos un piloto de su país era un objetivo absoluto. Para su debut en 2026 eligió a Valtteri Bottas y Sergio Pérez. El candidato local, Colton Herta, no tenía los puntos que exige la superlicencia.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Calendario · Europa</div>
+<h2 class="question">¿Los circuitos clásicos europeos deberían tener su lugar asegurado?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, son la historia</h3><p>Spa, Monza, Silverstone o Zandvoort son la razón por la que mucha gente ama la F1. Un campeonato del mundo que pierde sus templos por dinero pierde también parte de lo que vende.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, deben ganárselo</h3><p>La historia no paga un Gran Premio. Si un circuito no puede competir con lo que ofrecen otras ciudades, su lugar debe ocuparlo quien sí invierta. Así creció el deporte.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>El calendario de 2026 ya no incluye Imola, que se quedó sin contrato tras cinco carreras desde su regreso en 2020. Su lugar lo ocupó un circuito nuevo, en parte urbano, en Madrid, con contrato hasta 2035. Zandvoort corre este año por última vez, porque sus propios organizadores decidieron no renovar, y Barcelona está en el último año de su acuerdo. Spa pasa a rotación y quedará fuera dos de los próximos seis años.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Calendario · Sudamérica</div>
+<h2 class="question">¿Argentina merece volver al calendario de la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, lo ha demostrado</h3><p>Es la tierra de Fangio, tiene un piloto en la parrilla y una afición que llena cualquier tribuna. Pocos países del calendario han dado una muestra de pasión como la de Buenos Aires con Colapinto.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, primero los hechos</h3><p>Un Gran Premio no se gana con entusiasmo: hace falta un circuito homologado, dinero asegurado y estabilidad. Argentina ya tuvo carrera y la perdió. Volver sin garantías sería repetir la historia.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>La última carrera en Argentina fue en 1998. En abril de 2026, una exhibición de Colapinto por las calles de Buenos Aires reunió a medio millón de personas según los organizadores, más que la asistencia de muchos Grandes Premios. En agosto, el presidente Javier Milei le pidió a la FIA el regreso. El presidente de la FIA dijo apoyarlo, pero recordó que el calendario tiene plazas limitadas: si entra Argentina, alguien tiene que salir.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab green"><span class="n"></span><span class="w">Calentamiento</span></div>
+<div class="head">Pilotos · Adelantamientos</div>
+<h2 class="question">¿Cuál es el mejor adelantamiento de la historia?</h2>
+<div class="cases">
+<div class="case"><h3>El de Häkkinen en Spa 2000</h3><p>Häkkinen, con McLaren, y Schumacher, con Ferrari, peleaban el título de 2000. En la recta de Kemmel, a más de 300 por hora, con un coche doblado en medio, Häkkinen eligió el hueco que nadie vio. Es el adelantamiento que más se repite cuando se hace esta pregunta.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Uno que decidió algo</h3><p>Un adelantamiento se mide por lo que cambió. Una maniobra preciosa que no dio un título vale menos que una fea en la última vuelta de un campeonato. La historia recuerda resultados, no estética.</p></div>
+</div>
+<div class="cut green">
+<div class="body"><span class="tag">El dato incómodo</span><p>La vuelta anterior, Häkkinen lo intentó en el mismo sitio y los dos coches se tocaron a más de 320 por hora. El adelantamiento famoso necesitó un tercer coche: el BAR de Ricardo Zonta, al que iban a doblar, que mantuvo su línea mientras lo pasaban uno por cada lado. Häkkinen ganó con cinco vueltas por delante. Y aun así, ese año el campeón fue Schumacher.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
 
-  <div class="cut amber">
-    <div class="graphic">
+
+
+
+
+
+
+
+
+
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Legado · Compañeros</div>
+  <h2 class="question">Senna o Prost: ¿quién fue mejor?</h2>
+  <div class="cases">
+    <div class="case"><h3>Senna</h3><p>Velocidad pura que nadie ha vuelto a igualar a una vuelta. Ganó en coches que no eran los mejores y convirtió la clasificación en una disciplina propia. La leyenda no es marketing: es lo que dice la gente que corrió contra él.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Prost</h3><p>Cuatro títulos contra tres, y más victorias. Ganaba administrando neumáticos, combustible y riesgo, que es literalmente el trabajo. Le decían «El Profesor» como insulto y terminó siendo el mayor elogio del deporte.</p></div>
+  </div>
+  <div class="cut amber"><div class="graphic">
       <p class="gtitle">Temporada 1988 · Puntos sumados y puntos contados</p>
       <div class="barrow">
         <div class="who">Prost<small>7 victorias</small></div>
@@ -510,45 +778,1054 @@
         Barra sólida: puntos que contaron. Trama: puntos descartados por el reglamento.
       </p>
     </div>
-    <div class="body">
-      <span class="tag">El dato incómodo</span>
-      <p>Prost sumó 105 puntos ese año y Senna 94. Pero el reglamento de entonces solo contaba los once mejores resultados de dieciséis, y eso le borró 18 puntos a Prost y apenas 4 a Senna. Campeonato final: 90 a 87. Senna es campeón por tres puntos y por una regla de descarte que dejó de existir en 1991.</p>
-    </div>
+    <div class="body"><span class="tag">El dato incómodo</span><p>Prost sumó 105 puntos ese año y Senna 94. Pero el reglamento de entonces solo contaba los once mejores resultados de dieciséis, y eso le borró 18 puntos a Prost y apenas 4 a Senna. Campeonato final: 90 a 87. Senna es campeón por tres puntos y por una regla de descarte que dejó de existir en 1991.</p></div>
   </div>
-
-  <div class="verdict">
-    <span class="lbl">Mi veredicto</span>
-    <div class="writeline"></div>
-    <div class="writeline short"></div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
   </div>
-
-  <div class="brandline">
-    <span class="wm">quill</span>
-    <span class="folio">página<b></b></span></span>
-  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
 </section></div>
 
-<!-- 5 ▸ NUCLEAR -->
-<div class="frame"><section class="sheet">
-  <div class="tab red"><span class="n">71</span><span class="w">Zona roja</span></div>
-  <div class="head">Dirección de carrera</div>
-
-  <h2 class="question">Abu Dhabi 2021: ¿el título fue robado?</h2>
-
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Equipos · Órdenes</div>
+  <h2 class="question">¿Las órdenes de equipo deberían estar prohibidas?</h2>
   <div class="cases">
-    <div class="case">
-      <h3>Sí</h3>
-      <p>El procedimiento no se aplicó como está escrito. Solo se dejó desdoblarse a los cinco coches entre los dos líderes, y se reanudó para una sola vuelta. Un campeonato de veintidós carreras se decidió con una interpretación que nunca se había usado.</p>
-    </div>
+    <div class="case"><h3>Sí</h3><p>Compras una entrada para ver una carrera, no un acuerdo corporativo. Cuando un piloto se aparta, el aficionado en la grada acaba de pagar por una mentira.</p></div>
     <div class="spine"></div>
-    <div class="case">
-      <h3>No</h3>
-      <p>Se cruzó una meta y alguien iba delante. Fue una decisión discutible de dirección de carrera, no un fraude. Y hubo veintiuna carreras antes, con cien momentos en los que el título se pudo cerrar sin depender de nadie.</p>
-    </div>
+    <div class="case"><h3>No</h3><p>La F1 es un campeonato de constructores tanto como de pilotos. Un equipo que gasta cientos de millones tiene derecho a proteger su resultado. Prohibirlo no elimina las órdenes: solo las vuelve códigos por radio.</p></div>
   </div>
+  <div class="cut amber">
+    <div class="body"><span class="tag">El dato incómodo</span><p>Ya se probó. En Austria 2002, Barrichello levantó el pie saliendo de la última curva y Schumacher ganó por 0,182 segundos ante un público que abucheó el podio. La FIA multó a Ferrari con un millón de dólares, no por el cambio de posiciones, que era legal, sino por romper el protocolo del podio. Prohibió las órdenes desde 2003 y levantó la prohibición para 2011 al admitir que era imposible de vigilar. Los dos bandos ya ganaron una vez. Ninguno quedó contento.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
 
-  <div class="cut red">
-    <div class="graphic compact">
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Mérito · Coche y piloto</div>
+  <h2 class="question">¿Cuánto del éxito de un campeón es el coche?</h2>
+  <div class="cases">
+    <div class="case"><h3>Casi todo</h3><p>Pon a cualquiera de los diez mejores pilotos de la parrilla en el coche dominante de una era y gana el campeonato. Los datos de los últimos veinte años son claros sobre qué predice un título: la máquina.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Menos de lo que crees</h3><p>El compañero de equipo tiene el mismo coche. La comparación existe, se corre veinte veces al año, y casi siempre da el mismo resultado. Ahí no hay coche que te salve.</p></div>
+  </div>
+  <div class="cut amber">
+    <div class="body"><span class="tag">El dato incómodo</span><p>En 2016 Nico Rosberg le ganó el campeonato a Lewis Hamilton por 5 puntos con el mismo coche. Pero Hamilton ganó más carreras ese año: 10 contra 9. Rosberg se llevó el título por fiabilidad y salidas, no por ritmo. Y cinco días después de coronarse anunció su retirada: había tomado la decisión el lunes por la noche, veinticuatro horas después de ganarlo. El único hombre que ganó esa comparación decidió no volver a intentarlo.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Formato · Fin de semana</div>
+  <h2 class="question">¿Las carreras sprint mejoran o degradan el fin de semana?</h2>
+  <div class="cases">
+    <div class="case"><h3>Mejoran</h3><p>Convierten un sábado de clasificación en competición real. Más carreras, más incidentes, más razones para ver el fin de semana completo. La F1 tiene un problema de domingos previsibles y esto lo ataca.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Degradan</h3><p>Diluyen el domingo. Cuando todo es carrera, nada es carrera. Y reducen el entrenamiento libre, que es lo que permite a los equipos pequeños encontrar rendimiento y acercarse.</p></div>
+  </div>
+  <div class="cut amber">
+    <div class="body"><span class="tag">El dato incómodo</span><p>El sprint que defiendes o atacas hoy no es el que se probó. Debutó en 2021 dando la pole al ganador y puntos solo a los tres primeros. En 2022 le quitaron esa pole y ampliaron los puntos al top ocho. En 2023 lo volvieron un evento independiente con su propia clasificación y duplicaron los eventos a seis. En 2024 movieron esa clasificación al viernes. Tres rediseños en cuatro temporadas, y desde 2024 no ha vuelto a cambiar.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Circuitos · Calendario</div>
+  <h2 class="question">Mónaco: ¿joya de la corona o carrera que sobra?</h2>
+  <div class="cases">
+    <div class="case"><h3>Se queda</h3><p>Es el circuito donde el error se paga al instante y donde una vuelta de clasificación perfecta todavía significa algo. Ningún trazado moderno exige lo que exige ese. La historia no se fabrica.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Se va</h3><p>Es un desfile. La posición de salida decide el resultado, no se puede adelantar, y ocupa un fin de semana que podría ir a un circuito donde se corra de verdad.</p></div>
+  </div>
+  <div class="cut amber">
+    <div class="body"><span class="tag">El dato incómodo</span><p>«Los coches son demasiado anchos para Mónaco» es medio mito. El McLaren campeón de 1990 medía 2.133 mm de ancho; el máximo actual es 2.000 mm. Los coches de hoy son más estrechos que los de aquella época: solo son más anchos que los de la era 1998-2016, cuando el límite bajó a 1.800 mm. Lo que sí creció sin freno es la longitud y el peso, porque la longitud nunca tuvo un límite explícito.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Carrera · Decisiones</div>
+  <h2 class="question">¿Quedarse por lealtad o irse al mejor coche?</h2>
+  <div class="cases">
+    <div class="case"><h3>Quedarse</h3><p>Un proyecto se construye en años. El que salta de equipo cada vez que aparece un coche mejor nunca está el día que la inversión da fruto, y llega siempre de invitado a un sitio donde las jerarquías ya están repartidas.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Irse</h3><p>La ventana buena de un piloto dura unos diez años, no treinta. Esperar a que tu equipo despierte es apostar la carrera entera a una promesa que no controlas. Los títulos no se reparten por antigüedad.</p></div>
+  </div>
+  <div class="cut amber">
+    <div class="body"><span class="tag">El dato incómodo</span><p>Jenson Button llegó a BAR en 2003 y se quedó seis temporadas mientras el equipo se hundía. Tardó 113 Grandes Premios en ganar su primera carrera. Honda se retiró en diciembre de 2008, Ross Brawn compró el equipo por una libra simbólica asumiendo sus deudas, Button aceptó bajarse el sueldo para que sobreviviera, y en 2009 ganó el campeonato con esa misma fábrica. La lealtad le pagó. Después se fue a McLaren y no volvió a ganar un título nunca más.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Reglamento · Radio</div>
+  <h2 class="question">¿Debería prohibirse la radio durante la carrera?</h2>
+  <div class="cases">
+    <div class="case"><h3>Prohibirla</h3><p>El reglamento dice que el piloto debe conducir «solo y sin ayuda». Hoy escucha puntos de frenada, gestión y estrategia durante dos horas. Si la mitad del talento es decidir, esa mitad se la estamos quitando.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Dejarla</h3><p>Son máquinas que fallan. Un piloto sin información no es más puro, es más peligroso. Y la radio es de lo poco que deja ver el deporte por dentro: sin ella el domingo es más opaco, no más noble.</p></div>
+  </div>
+  <div class="cut amber">
+    <div class="body"><span class="tag">El dato incómodo</span><p>Ya se probó en 2016. Rosberg perdió el segundo puesto en Silverstone por recibir una instrucción para salvar la caja de cambios, y una carrera después sancionaron a Button en Hungría por un aviso sobre unos frenos que estaban a punto de fallar. La FIA levantó la prohibición tras once carreras, y el motivo que dio no fue la seguridad sino mejorar el contenido para los aficionados. En el Gran Premio siguiente se emitieron un 73% menos de mensajes de radio que en la edición anterior.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Afición · Comportamiento</div>
+  <h2 class="question">¿Está bien abuchear en el podio?</h2>
+  <div class="cases">
+    <div class="case"><h3>Sí, pagaste la entrada</h3><p>Un estadio abuchea, una plaza abuchea, un teatro abuchea. El deporte en vivo es emoción sin filtro, y pedirle al público que aplauda educado es pedirle que deje de ser público.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>No, ahí no</h3><p>El podio no es la pista. Es el momento en que alguien recibe lo que se ganó jugándose el pellejo. Silbar ahí no castiga al deporte: castiga a una persona por haber sido mejor que tu favorito.</p></div>
+  </div>
+  <div class="cut amber">
+    <div class="body"><span class="tag">El dato incómodo</span><p>En febrero de 2025, en la presentación de la temporada en el O2 de Londres, el público abucheó a Verstappen y a Horner. La FIA publicó un comunicado llamándolo «reacción tribalista» y pidiendo una cultura de respeto. Esa misma noche también abuchearon al presidente de la FIA. Y en Silverstone 2024, cuando silbaron a Verstappen en la entrevista posterior a la carrera, hubo comentaristas que aseguraron que la transmisión bajó el volumen. El deporte quiere la pasión, pero no su sonido.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+  <div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+  <div class="head">Técnica · Dimensiones</div>
+  <h2 class="question">¿Los coches de hoy son demasiado grandes y pesados?</h2>
+  <div class="cases">
+    <div class="case"><h3>Sí, y se nota</h3><p>Un coche más pesado frena peor, gira peor y no cabe en los circuitos que hicieron grande a este deporte. Mónaco, Zandvoort e Imola no crecieron. Los coches sí. Adelantar se volvió un problema de geometría.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Es el precio de lo que pedimos</h3><p>Ese peso son baterías, estructuras de impacto y protección para la cabeza. Nadie quiere volver a coches ligeros que se partían en dos. Y aun así estos son los Fórmula 1 más rápidos que se han construido.</p></div>
+  </div>
+  <div class="cut amber">
+    <div class="graphic"><p class="gtitle">Peso mínimo reglamentario, en kilos</p>
+      <svg viewBox="0 0 620 132" width="100%" role="img" aria-label="Evolución del peso mínimo de un Fórmula 1 entre 1995 y 2026">
+        <g font-family="Archivo, Helvetica, sans-serif" font-size="10" fill="#565C63">
+          <line x1="28" y1="20" x2="612" y2="20" stroke="#DEDFD9"/>
+          <line x1="28" y1="60" x2="612" y2="60" stroke="#DEDFD9"/>
+          <line x1="28" y1="100" x2="612" y2="100" stroke="#15181C" stroke-width="1.2"/>
+          <text x="22" y="23" text-anchor="end">800</text>
+          <text x="22" y="63" text-anchor="end">700</text>
+          <text x="22" y="103" text-anchor="end">600</text>
+          <polyline points="60,102 148,98 236,64 324,46 412,21 500,33"
+                    fill="none" stroke="#15181C" stroke-width="2.4"/>
+          <g fill="#15181C">
+            <circle cx="60" cy="102" r="3.4"/><circle cx="148" cy="98" r="3.4"/>
+            <circle cx="236" cy="64" r="3.4"/><circle cx="324" cy="46" r="3.4"/>
+            <circle cx="412" cy="21" r="4.4"/>
+          </g>
+          <circle cx="500" cy="33" r="4.4" fill="#C08312"/>
+          <g font-size="9.5" font-weight="600" fill="#15181C">
+            <text x="60" y="94" text-anchor="middle">595</text>
+            <text x="148" y="90" text-anchor="middle">605</text>
+            <text x="236" y="56" text-anchor="middle">691</text>
+            <text x="324" y="38" text-anchor="middle">734</text>
+            <text x="412" y="13" text-anchor="middle">798</text>
+            <text x="500" y="25" text-anchor="middle" fill="#8A6410">768</text>
+          </g>
+          <g font-size="9.5">
+            <text x="60" y="116" text-anchor="middle">1995</text>
+            <text x="148" y="116" text-anchor="middle">2009</text>
+            <text x="236" y="116" text-anchor="middle">2014</text>
+            <text x="324" y="116" text-anchor="middle">2018</text>
+            <text x="412" y="116" text-anchor="middle">2022</text>
+            <text x="500" y="116" text-anchor="middle" fill="#8A6410" font-weight="600">2026</text>
+          </g>
+          <text x="612" y="129" text-anchor="end" font-size="8.5">2014: llega el híbrido · 2018: llega el halo · 2026: la FIA da marcha atrás</text>
+        </g>
+      </svg></div>
+    <div class="body"><span class="tag">El dato incómodo</span><p>La seguridad no es lo que los engordó. El halo pesa unos siete kilos. El salto más grande de la historia fueron 49 kilos en una sola temporada, y lo trajo el híbrido en 2014. Y el deporte ya se dio por enterado: para 2026 la FIA bajó el mínimo a 768 kilos, acortó la distancia entre ejes 200 milímetros y estrechó el suelo 100. Aun así siguen pesando 173 kilos más que en 1995.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Títulos</div>
+<h2 class="question">¿Quién es el mejor piloto que nunca fue campeón?</h2>
+<div class="cases">
+<div class="case"><h3>Se mide en resultados</h3><p>Stirling Moss ganó 16 Grandes Premios entre 1955 y 1961 y fue subcampeón cuatro años seguidos, en la época de Fangio. Nadie ha ganado tantas carreras sin título. El mejor sin corona es el que más ganó.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Se mide en oportunidades</h3><p>Las victorias dependen del coche que te tocó. El mejor sin título es el que nunca tuvo máquina para pelearlo y aun así hizo lo que los campeones no hicieron. Contar victorias es premiar a quien sí tuvo con qué.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Moss perdió su mejor oportunidad por un punto, y la perdió él mismo. En Portugal 1958 descalificaron a su rival Mike Hawthorn por mover el coche en sentido contrario para arrancarlo tras un trompo. Moss declaró a su favor, los comisarios le devolvieron los puntos y Hawthorn fue campeón por uno: 42 a 41, con una victoria contra cuatro de Moss. Él nunca lo lamentó: decía que le importaba más el respeto de los otros pilotos.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Riesgo</div>
+<h2 class="question">Lauda en 1976: ¿volver fue heroico o imprudente?</h2>
+<div class="cases">
+<div class="case"><h3>Heroico</h3><p>En agosto de 1976 Niki Lauda, campeón vigente con Ferrari, quedó atrapado en su coche en llamas en Nürburgring y recibió la extremaunción. Seis semanas después corría en Monza con las quemaduras sin cerrar, y terminó cuarto.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Imprudente</h3><p>Volvió sangrando bajo el casco a correr rueda con rueda. El valor no borra el riesgo, y un piloto que no está al cien por cien no solo se juega su vida: también la de los que van al lado.</p></div>
+</div>
+<div class="cut amber">
+<div class="graphic compact">
+<p class="gtitle">Campeonato 1976 · Puntos finales</p>
+<div class="barrow">
+<div class="who">Hunt<small>Campeón</small></div>
+<div class="track">
+<div class="fill solid" style="width:100%"></div>
+<span class="val" style="right:2mm;color:#EFEFEB;">69</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Lauda<small>Subcampeón</small></div>
+<div class="track">
+<div class="fill ghost" style="width:98.6%"></div>
+<div class="fill solid" style="width:85.5%"></div>
+<span class="val" style="left:calc(85.5% - 10mm);color:#EFEFEB;">59</span>
+<span class="val" style="left:calc(98.6% - 8mm);color:#15181C;">+9</span>
+</div>
+</div>
+<p style="margin:3mm 0 0;font-size:8.5pt;font-family:Archivo,Helvetica,sans-serif;color:#565C63;letter-spacing:.03em;">
+Trama: los 9 puntos de Gran Bretaña, ganada por Hunt en la pista y adjudicada a Lauda en la apelación.
+</p>
+</div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Lauda perdió el título por un punto, 69 a 68, y no fue por volver. Fue por parar: en Japón, bajo un diluvio, se retiró por decisión propia en la segunda vuelta. Y nueve de sus 68 puntos eran del Gran Premio de Gran Bretaña, que James Hunt ganó en la pista y que Lauda recibió meses después, cuando una apelación de Ferrari descalificó a Hunt. El héroe de la vuelta perdió por prudencia, y con puntos ganados en un despacho.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Negocio · Audiencia</div>
+<h2 class="question">¿Drive to Survive fue bueno para la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, abrió la puerta</h3><p>Llevó el paddock a gente que nunca había visto una carrera, sobre todo en Estados Unidos, donde la F1 llevaba décadas sin arrancar. Hoy ese país tiene tres Grandes Premios y una generación de aficionados que entró por Netflix.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, la volvió telenovela</h3><p>Monta rivalidades que no existen, usa radios fuera de contexto y enseña al recién llegado que la F1 es drama entre personas. El que entra por el drama se va cuando el drama se acaba.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Mercedes y Ferrari no abrieron sus puertas en la primera temporada y cambiaron de opinión al ver el éxito en Estados Unidos. Verstappen hizo el camino inverso: se negó a dar entrevistas para la temporada de 2021 porque, según él, la serie fabricaba rivalidades. Así que el campeonato con la rivalidad más real en años se contó sin la voz de uno de sus dos protagonistas. Volvió al año siguiente, después de reunirse con los productores y pedir más control sobre cómo lo mostraban.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Seguridad · Cabina</div>
+<h2 class="question">¿El halo debió llegar antes?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, llegó tarde</h3><p>El arco de titanio sobre la cabeza del piloto se probó en pista en 2016, con la mayoría de los pilotos a favor, y la FIA lo quería para 2017. Cada año de espera fue un año con la cabeza expuesta por estética.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, había que probarlo</h3><p>Cambia la visibilidad y la forma de sacar al piloto de un coche destrozado. Había ingenieros que temían que actuara como guillotina en un choque lateral. Eso no se impone con prisa.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>En julio de 2016 el Grupo de Estrategia votó por unanimidad aplazarlo un año para buscar algo mejor, aunque a los pilotos les habían mostrado que aumentaba un 17% sus opciones de sobrevivir. La alternativa fracasó en su debut y el halo llegó igual en 2018. Ese año Toto Wolff dijo que se lo quitaría con una motosierra, y meses después, tras salvar a Leclerc en Spa, admitió que valía la pena. En 2021 sostuvo el coche de Verstappen sobre la cabeza de Hamilton, su piloto.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Circuitos · Leyenda</div>
+<h2 class="question">¿Spa es el mejor circuito del mundo?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, sin discusión</h3><p>Eau Rouge, Raidillon, siete kilómetros de bosque y un clima que cambia de una curva a otra. Los pilotos lo citan una y otra vez como su favorito, y estuvo en el primer campeonato de la historia, en 1950.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Es nostalgia</h3><p>Una pista larga no es una pista mejor. Con los coches de hoy, Spa da carreras que se deciden en la estrategia como en cualquier otro lado, y su fama vive más de lo que fue que de lo que da ahora.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>El mismo clima que hace leyenda a Spa le dio a la F1 la carrera más corta de su historia. En 2021 llovió tanto que solo hubo vueltas detrás del coche de seguridad, la clasificación se tomó tras una sola vuelta y aun así se repartieron medios puntos. A los espectadores no se les devolvió la entrada. Y desde 2026 Spa ya no tiene su lugar asegurado cada año: correrá en 2026, 2027, 2029 y 2031. El mejor circuito del mundo ahora se turna.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Formato · Parrilla</div>
+<h2 class="question">¿Debería probarse la parrilla invertida?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, al menos probarla</h3><p>Invertir el orden en una carrera corta del sábado obligaría a los mejores coches a adelantar y a los mejores pilotos a demostrarlo. La Fórmula 2 lo usa desde hace años. La F1 nunca lo ha probado ni una vez.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, es un truco</h3><p>La F1 premia al más rápido. Poner al líder atrás no mide nada: solo fabrica resultados que no se habrían dado. Un campeonato decidido con la parrilla al revés no vale lo mismo.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>La idea estuvo a punto de probarse, y la frenó el equipo al que más perjudicaba. En 2019 y otra vez en 2020 hacía falta unanimidad, y Mercedes, que llevaba seis títulos seguidos, votó en contra. Toto Wolff dijo que no era para proteger su ventaja: en la final de 100 metros nadie hace salir a Usain Bolt cinco metros atrás. Meses después, en Monza 2020, un coche de seguridad, una sanción a Hamilton y una bandera roja revolvieron el orden, y ganó Pierre Gasly con un AlphaTauri.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Reglamento · Pista</div>
+<h2 class="question">¿Los límites de pista se castigan demasiado?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, es absurdo</h3><p>Castigar a un piloto por pisar unos centímetros más allá de una línea blanca convierte la carrera en un examen de contabilidad. La gente quiere ver pelear, no revisar neumáticos sobre la pintura.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, la regla es la regla</h3><p>La pista tiene un borde y el que lo pasa gana tiempo. Si no se castiga, el que respeta la línea pierde frente al que no. El problema no es la sanción: son los circuitos sin grava.</p></div>
+</div>
+<div class="cut amber">
+<div class="figure"><b>1.200</b><span>y más: posibles salidas de pista que Control de Carrera tuvo que revisar en una sola carrera, Austria 2023.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Casi todas fueron en las curvas 9 y 10. Se borraron 83 tiempos de vuelta y, tras una protesta de Aston Martin, el resultado final se publicó unas cinco horas después de la bandera a cuadros, cuando la transmisión ya había terminado. La FIA recordó que llevaba años pidiendo grava en esas dos curvas. La regla funcionó; la pista, no.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Récords</div>
+<h2 class="question">Schumacher o Hamilton: ¿quién fue mejor?</h2>
+<div class="cases">
+<div class="case"><h3>Schumacher</h3><p>Llegó a una Ferrari que llevaba 17 años sin un título de pilotos y la convirtió en una máquina de ganar: cinco campeonatos seguidos. No encontró un equipo ganador, lo construyó alrededor suyo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Hamilton</h3><p>Siete títulos como Schumacher, pero más victorias y más poles, en una era con más carreras, menos averías y rivales más parejos. Sus números están hechos en la época más competitiva.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Los dos pusieron a prueba su grandeza igual: yéndose a Ferrari. Schumacher llegó en 1996, con 27 años, ganó tres carreras en su primera temporada y necesitó cinco para ser campeón de rojo. Hamilton llegó en 2025, con 40, y fue el primer año de su carrera sin un podio en Gran Premio. Ferrari reconoció después que había dejado de desarrollar ese coche en abril. El mismo examen, con trece años de diferencia.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Técnica · Efecto suelo</div>
+<h2 class="question">¿La FIA hizo bien en intervenir por los rebotes de 2022?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, era salud</h3><p>Los coches de efecto suelo de 2022 rebotaban contra el asfalto a más de 300 por hora. En Bakú, Hamilton apenas pudo salir del coche por el dolor de espalda, y varios pilotos advirtieron de lesiones a largo plazo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, era cosa de cada equipo</h3><p>Cualquier equipo podía acabar con los rebotes subiendo su coche. Algunos no lo hacían porque perdían rendimiento. Obligarlos por reglamento fue resolverles un problema que ellos mismos elegían tener.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Lando Norris lo dijo esa misma semana: no era algo de lo que quejarse, porque los equipos podían subir el coche a costa de ser más lentos. La FIA intervino igual y lo hizo invocando la seguridad, una vía que no necesita el acuerdo de los equipos. Y la paradoja: Mercedes, el equipo que más había sufrido y más había alzado la voz, era el que más rendimiento podía perder con la solución, porque tendría que subir su coche.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Finanzas · Tope de gasto</div>
+<h2 class="question">¿El castigo a Red Bull por superar el tope de gasto fue suficiente?</h2>
+<div class="cases">
+<div class="case"><h3>Fue poco</h3><p>Red Bull gastó de más en 2021, el año en que Verstappen ganó el título por ocho puntos. Una multa que un equipo grande puede pagar sin notarlo no disuade a nadie: la próxima vez, gastar de más puede salir a cuenta.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Fue justo</h3><p>El exceso fue de un 1,6%, en el primer año de una norma nueva, sin mala fe según la propia FIA y en buena parte por errores de contabilidad. Castigarlo como un fraude habría sido desproporcionado.</p></div>
+</div>
+<div class="cut amber">
+<div class="graphic compact">
+<p class="gtitle">Red Bull 2021 · Millones de dólares</p>
+<div class="barrow">
+<div class="who">Exceso<small>Declarado</small></div>
+<div class="track">
+<div class="fill solid" style="width:31.4%;background:#15181C;"></div>
+<span class="val" style="left:calc(31.4% + 2.5mm);color:#15181C;">2,2</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Exceso<small>Con el crédito fiscal</small></div>
+<div class="track">
+<div class="fill solid" style="width:7.1%;background:#15181C;"></div>
+<span class="val" style="left:calc(7.1% + 2.5mm);color:#15181C;">0,5</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Multa<small>Impuesta por la FIA</small></div>
+<div class="track">
+<div class="fill solid" style="width:100%;background:#C08312;"></div>
+<span class="val" style="right:2mm;color:#15181C;">7</span>
+</div>
+</div>
+</div>
+<div class="body"><span class="tag">El dato incómodo</span><p>La multa, siete millones de dólares, fue tres veces más alta que el propio exceso. Buena parte venía de partidas como el catering o las bajas por enfermedad, y con un crédito fiscal bien aplicado el exceso habría sido del 0,37%. El castigo deportivo fue un 10% menos de túnel de viento y simulación para 2023. Ese año, Red Bull ganó 21 de las 22 carreras.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Dinero</div>
+<h2 class="question">¿Los pilotos de pago le hacen daño a la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, quitan asientos</h3><p>Cada asiento comprado es un asiento que no ocupa alguien más rápido. Cuando el dinero decide quién corre, la F1 deja de ser la categoría de los veinte mejores del mundo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, siempre existieron</h3><p>Casi nadie llega a la F1 sin patrocinadores detrás, y muchos equipos pequeños sobreviven gracias a ellos. La diferencia entre un piloto de pago y un piloto con apoyo es de grado, no de naturaleza.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>A finales de 2010, Williams dejó fuera a Nico Hülkenberg, que dos semanas antes le había dado su primera pole en cinco años, en Brasil. Su lugar fue para Pastor Maldonado, respaldado por la petrolera estatal venezolana. Una factura filtrada mostró que el asiento de 2012 costaba 29,4 millones de libras. Ese año, Maldonado ganó el Gran Premio de España. En 2016 se quedó sin volante porque su patrocinador ya no podía pagar.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Fichajes</div>
+<h2 class="question">¿Cuál fue el peor fichaje de la historia de la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Ricciardo en McLaren</h3><p>Llegó en 2021 como uno de los mejores de la parrilla y salió un año antes de terminar su contrato. En 2022 sumó 37 puntos contra 122 de su compañero, Lando Norris, que le ganó 20 a 2 en clasificación.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No hay malos fichajes, hay malos momentos</h3><p>Un piloto que brilló en otro equipo no se vuelve lento de golpe. Coche nuevo, reglas nuevas y un compañero en pleno ascenso pueden hundir a cualquiera. Culpar solo al piloto es lo fácil.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>El peor fichaje de McLaren le dio también su mejor momento en años: Ricciardo ganó en Monza 2021, la primera victoria del equipo desde 2012. Pero hubo un coste más: en 2022, McLaren perdió el cuarto puesto de constructores ante Alpine por 14 puntos. Su asiento fue para Oscar Piastri, que en 2025 llegó a liderar el campeonato.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Parrilla</div>
+<h2 class="question">¿Veremos pronto a una mujer en la parrilla de F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, está más cerca</h3><p>Nunca hubo tantas chicas en el karting ni tanto apoyo. La F1 creó en 2023 su propia categoría, F1 Academy, y los equipos respaldan a sus pilotos. Ahora es cuestión de tiempo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, falta la base</h3><p>Para llegar a la F1 hay que ganar en Fórmula 3 y Fórmula 2 contra los mejores. Una categoría aparte ayuda a empezar, pero no reemplaza competir cada fin de semana con la élite. Faltan años de pirámide.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>La última mujer que tomó la salida en un Gran Premio fue Lella Lombardi, en Austria 1976: hace medio siglo. Es también la única que ha sumado puntos, medio punto en España 1975, en una carrera detenida tras un accidente que costó la vida a varias personas. Y perdió su asiento en March cuando quedó libre Ronnie Peterson.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Dominio</div>
+<h2 class="question">¿La era Mercedes fue buena para la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, fue excelencia</h3><p>Mercedes entendió la era híbrida antes que nadie y la ejecutó mejor que nadie durante años. Quejarse de la excelencia es no entender el deporte: a los demás les tocaba alcanzarla.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, mató la emoción</h3><p>Durante años la única pregunta era cuál de los dos Mercedes ganaría. Un campeonato que se decide dentro de un mismo garaje deja de parecer un campeonato del mundo.</p></div>
+</div>
+<div class="cut amber">
+<div class="figure"><b>51</b><span>victorias de Mercedes en las últimas 59 carreras, el día en que Rosberg anunció su retiro.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Cuando por fin alguien le ganó a Hamilton dentro de ese sistema, se fue. Nico Rosberg fue campeón en 2016 y anunció su retiro cinco días después: dijo que había subido su montaña. Fue el primer campeón vigente en retirarse desde Prost en 1993. Mercedes acabaría sumando ocho títulos de constructores seguidos, de 2014 a 2021, un récord.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Cantera</div>
+<h2 class="question">¿Red Bull quema a sus pilotos jóvenes?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, sin piedad</h3><p>Kvyat fue bajado tras cuatro carreras en 2016, Gasly tras doce en 2019 y Liam Lawson tras solo dos en 2025, la etapa más corta en la historia del equipo. Nadie aprende a ganar con una guillotina encima.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, así se forja</h3><p>La presión es el examen. Un equipo que pelea títulos no puede esperar a que un piloto madure a su ritmo, y ningún otro programa da tantas oportunidades a tantos jóvenes.</p></div>
+</div>
+<div class="cut amber">
+<div class="graphic compact">
+<p class="gtitle">Carreras de esa temporada en Red Bull antes de volver al filial</p>
+<div class="barrow">
+<div class="who">Gasly<small>2019</small></div>
+<div class="track">
+<div class="fill solid" style="width:100.0%;background:#15181C;"></div>
+<span class="val" style="left:calc(100.0% - 9mm);color:#EFEFEB;">12</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Kvyat<small>2016</small></div>
+<div class="track">
+<div class="fill solid" style="width:33.3%;background:#15181C;"></div>
+<span class="val" style="left:calc(33.3% - 9mm);color:#EFEFEB;">4</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Lawson<small>2025</small></div>
+<div class="track">
+<div class="fill solid" style="width:16.7%;background:#C08312;"></div>
+<span class="val" style="left:calc(16.7% + 2.5mm);color:#15181C;">2</span>
+</div>
+</div>
+</div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Ese mismo sistema produjo los dos extremos. A Kvyat lo bajaron en 2016 para subir a Max Verstappen, que ganó en su primera carrera con Red Bull y acabó siendo cuatro veces campeón. Y Pierre Gasly, degradado en 2019, ganó al año siguiente en Monza con el equipo filial, el mismo al que lo habían devuelto.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Radio</div>
+<h2 class="question">¿Alonso hizo bien en criticar a Honda en público?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, fue honesto</h3><p>El motor era malo y él lo dijo. En su primera pretemporada dieron siete vueltas en cuatro días. Callar para proteger a un socio es engañar a los aficionados.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, fue un error</h3><p>Lo dijo por radio, en el Gran Premio de casa de Honda, y se escuchó en todo el mundo. Un piloto que humilla en público a su proveedor rompe la relación que el equipo necesita para mejorar.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>En Suzuka 2015 Alonso gritó por radio "motor de GP2". McLaren y Honda se separaron tras 2017 sin un solo podio. Honda se fue con Red Bull y en 2021 ganó el título con Verstappen. Alonso admitió después que quizá no debió decirlo, aunque insistió en que aquel motor era muy malo. Y en 2026 volvió a tener un motor Honda detrás, el de Aston Martin, que llegó a la pretemporada con problemas de fiabilidad.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Negocio · Privilegios</div>
+<h2 class="question">¿Ferrari debería tener privilegios que no tiene nadie más?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, Ferrari es la F1</h3><p>Es el único equipo que ha corrido todos los campeonatos y la marca que más aficionados arrastra. Pagarle un plus es pagar por lo que aporta, como se le paga más a la estrella de una película.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, todos deben ser iguales</h3><p>Un bono solo por historia y un derecho a vetar reglas convierten a un competidor en juez y parte. En una competición justa, nadie debería poder bloquear el reglamento que no le conviene.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Ferrari conserva un derecho de veto que viene de la época de Enzo Ferrari, y lo usó para frenar un tope al precio de motores y cajas de cambios. En una reunión sobre el tema, Jean Todt, presidente de la FIA y exjefe de Ferrari, fue el único que se opuso a ese veto. En 2011, Ferrari cobró más premios que Red Bull, que había ganado los dos títulos. Y aun así, Ferrari no gana un campeonato desde 2008.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Ferrari</div>
+<h2 class="question">¿La etapa de Vettel en Ferrari fue un fracaso?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, lo fue</h3><p>Llegó en 2015 como tetracampeón para repetir lo de Schumacher y se fue seis años después sin un título. En 2017 y 2018 tuvo coche para pelear y los perdió, en parte, por errores propios.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, hizo lo que pudo</h3><p>Ganó 14 carreras contra el Mercedes más dominante de la historia, con un coche que casi nunca fue el mejor de la temporada. Pelear dos títulos contra ese rival no es un fracaso.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Con sus 14 victorias de rojo, Vettel es el tercer piloto que más ha ganado con Ferrari. Aun así, al despedirse, él mismo lo llamó un fracaso: el objetivo era el título y no lo consiguieron. Cuando le preguntaron qué cambiaría, respondió que habría frenado antes en Hockenheim 2018, donde se estrelló liderando su carrera de casa y perdió el liderato del campeonato.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Talento</div>
+<h2 class="question">¿Hülkenberg demuestra que el talento no basta en la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, sin coche no hay nada</h3><p>Campeón de F3 y de GP2, pole con Williams en su primer año y quince temporadas de rendimiento sólido. Nunca tuvo un coche para ganar, y la F1 no premia al piloto: premia al paquete completo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, algo le faltó</h3><p>En quince años hubo días de lluvia, caos y oportunidades, y el podio no llegaba. Otros con coches parecidos encontraron su momento antes. Si el talento sobrara, se habría notado antes.</p></div>
+</div>
+<div class="cut amber">
+<div class="figure"><b>239</b><span>carreras necesitó Hülkenberg para subir por primera vez al podio. Nadie en la historia de la F1 había esperado tanto.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Durante años tuvo el récord de más carreras sin subir al podio, y pasó temporadas enteras sin asiento fijo: 2011 y de 2020 a 2022. Cuando por fin subió, en Silverstone 2025, lo hizo saliendo 19º con un Sauber y aguantando detrás a Lewis Hamilton. El trofeo, por un acuerdo comercial de la F1, estaba hecho de piezas de Lego.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Calendario · Espectáculo</div>
+<h2 class="question">¿Las Vegas es buena para la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, abre mercado</h3><p>Una carrera nocturna por el Strip es un escaparate que ninguna pista tradicional puede ofrecer. Atrae a un público que nunca pisaría Monza y pone a la F1 en el centro del entretenimiento estadounidense.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, es show antes que deporte</h3><p>Se pensó para la televisión y los casinos, con horarios extremos y una pista que se monta y se desmonta cada año. Cuando el espectáculo va primero, el deporte queda en segundo plano.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>El primer entrenamiento de 2023 duró apenas unos minutos: una tapa de alcantarilla suelta destrozó el Ferrari de Carlos Sainz. Los comisarios reconocieron que el daño venía de circunstancias externas muy inusuales, pero le aplicaron igual diez puestos de sanción porque el reglamento no les dejaba otra opción. La segunda sesión empezó a las 2:30 de la madrugada, ya sin público. La compensación fue un vale de 200 dólares en la tienda oficial, solo para entradas de un día.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Compañero</div>
+<h2 class="question">¿Checo Pérez fue un buen compañero para Verstappen?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, el mejor posible</h3><p>Aguantó a Hamilton en Abu Dhabi 2021 para ayudar a Verstappen, ganó cinco carreras con Red Bull y en 2023 fue subcampeón: el primer doblete de pilotos en la historia del equipo. Hizo exactamente su trabajo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, se quedó corto</h3><p>En 2024 terminó octavo, a 285 puntos de su compañero, y Red Bull perdió el título de constructores. Un segundo piloto que no suma deja solo al primero, y eso también cuesta campeonatos.</p></div>
+</div>
+<div class="cut amber">
+<div class="graphic compact">
+<p class="gtitle">Puntos en el campeonato · Red Bull</p>
+<div class="barrow">
+<div class="who">Verstappen<small>2023</small></div>
+<div class="track">
+<div class="fill solid" style="width:100.0%;background:#15181C;"></div>
+<span class="val" style="left:calc(100.0% - 11mm);color:#EFEFEB;">575</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Pérez<small>2023 · subcampeón</small></div>
+<div class="track">
+<div class="fill solid" style="width:49.6%;background:#C08312;"></div>
+<span class="val" style="left:calc(49.6% - 11mm);color:#EFEFEB;">285</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Verstappen<small>2024</small></div>
+<div class="track">
+<div class="fill solid" style="width:76.0%;background:#15181C;"></div>
+<span class="val" style="left:calc(76.0% - 11mm);color:#EFEFEB;">437</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Pérez<small>2024 · octavo</small></div>
+<div class="track">
+<div class="fill solid" style="width:26.4%;background:#C08312;"></div>
+<span class="val" style="left:calc(26.4% + 2.5mm);color:#15181C;">152</span>
+</div>
+</div>
+<p style="margin:3mm 0 0;font-size:8.5pt;font-family:Archivo,Helvetica,sans-serif;color:#565C63;letter-spacing:.03em;">En 2023, su mejor año, la diferencia con Verstappen fue de 290 puntos: más que todos los que sumó él.</p>
+</div>
+<div class="body"><span class="tag">El dato incómodo</span><p>A mitad de 2024, Red Bull le renovó el contrato hasta 2026. Seis meses después, lo dejó ir. Su reemplazo, Liam Lawson, duró dos carreras antes de ser devuelto al equipo filial, y Red Bull volvió a cambiar de compañero para Verstappen. Pérez regresó a la parrilla en 2026, con Cadillac, el equipo nuevo.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Equipo · Reglas internas</div>
+<h2 class="question">¿McLaren hizo bien en dejar pelear a sus dos pilotos en 2025?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, es lo justo</h3><p>Dos pilotos, las mismas oportunidades. McLaren ganó el campeonato de constructores y el de pilotos sin elegir favorito, y ninguno de los dos puede decir que le robaron el título desde dentro.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, casi lo pierde todo</h3><p>Mientras McLaren repartía oportunidades, Verstappen recortaba puntos cada domingo. Un equipo que quiere el título tiene que elegir a tiempo, y McLaren lo dejó para la última carrera.</p></div>
+</div>
+<div class="cut amber">
+<div class="graphic compact"><p class="gtitle">Puntos de los tres aspirantes al título</p>
+<svg viewBox="0 0 620 154" width="100%" role="img" aria-label="Puntos de Piastri, Norris y Verstappen tras Zandvoort 2025 y al final de la temporada">
+<g font-family="Archivo, Helvetica, sans-serif">
+<line x1="0" y1="118" x2="242" y2="118" stroke="#15181C" stroke-width="1.2"/>
+<line x1="378" y1="118" x2="620" y2="118" stroke="#15181C" stroke-width="1.2"/>
+<rect x="0" y="52.0" width="74" height="66.0" fill="#15181C"/><text x="37.0" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#15181C">309</text><text x="37.0" y="131" text-anchor="middle" font-size="9" fill="#565C63">Piastri</text><rect x="84" y="59.2" width="74" height="58.8" fill="#C08312"/><text x="121.0" y="54" text-anchor="middle" font-size="11" font-weight="700" fill="#8A6410">275</text><text x="121.0" y="131" text-anchor="middle" font-size="9" fill="#565C63">Norris</text><rect x="168" y="74.2" width="74" height="43.8" fill="#7D838A"/><text x="205.0" y="69" text-anchor="middle" font-size="11" font-weight="700" fill="#15181C">205</text><text x="205.0" y="131" text-anchor="middle" font-size="9" fill="#565C63">Verstappen</text><text x="121.0" y="148" text-anchor="middle" font-size="9.5" font-weight="600" fill="#15181C">Tras Zandvoort, agosto 2025</text><rect x="378" y="30.4" width="74" height="87.6" fill="#15181C"/><text x="415" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#15181C">410</text><text x="415" y="131" text-anchor="middle" font-size="9" fill="#565C63">Piastri</text><rect x="462" y="27.6" width="74" height="90.4" fill="#C08312"/><text x="499" y="23" text-anchor="middle" font-size="11" font-weight="700" fill="#8A6410">423</text><text x="499" y="131" text-anchor="middle" font-size="9" fill="#565C63">Norris</text><rect x="546" y="28.1" width="74" height="89.9" fill="#7D838A"/><text x="583" y="23" text-anchor="middle" font-size="11" font-weight="700" fill="#15181C">421</text><text x="583" y="131" text-anchor="middle" font-size="9" fill="#565C63">Verstappen</text><text x="499" y="148" text-anchor="middle" font-size="9.5" font-weight="600" fill="#15181C">Final, diciembre 2025</text>
+</g></svg></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Tras el Gran Premio de los Países Bajos, Piastri lideraba con 34 puntos sobre Norris y 104 sobre Verstappen. Si McLaren hubiera elegido entonces, habría elegido a Piastri. Ganó Norris, y Verstappen, que parecía descartado, terminó a solo dos puntos. En el camino hubo una doble descalificación en Las Vegas y una estrategia fallida en Qatar. El título se decidió en la última carrera: 423 contra 421.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Reglamento · Conducta</div>
+<h2 class="question">¿La FIA debe castigar a los pilotos por decir groserías?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, son referentes</h3><p>Millones de niños ven la F1 y escuchan las radios. Un piloto es una figura pública, y la FIA tiene derecho a pedirle que cuide lo que dice ante un micrófono, sobre todo en una rueda de prensa.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, es emoción</h3><p>Un piloto a 300 por hora no habla como en una oficina. Castigar una palabrota es tratar a adultos como niños y quitarle al deporte la autenticidad que lo hace atractivo.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>En 2024 Verstappen fue castigado con servicio comunitario por una palabrota en rueda de prensa, días después de que el presidente de la FIA dijera que los pilotos no son raperos. Los pilotos respondieron con una carta pidiendo que los trataran como adultos y preguntando, por tercer año, a dónde iba el dinero de las multas. En 2025 la FIA redujo las sanciones a la mitad. Y en la serie de Netflix que tanto hizo crecer la F1, las palabrotas de Guenther Steiner se emitieron por todo el mundo sin problema.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Colombia</div>
+<h2 class="question">¿Montoya se fue de la F1 demasiado pronto?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, tenía más</h3><p>Ganó siete carreras, hizo trece poles y en 2003 estuvo en la pelea por el título. Tenía velocidad para ser campeón y se marchó a mitad de 2006, con 30 años, cuando aún le quedaba mucho por dar.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, eligió bien</h3><p>La F1 de entonces no le daba lo que buscaba y, tras chocar con Ron Dennis, prefirió irse. Afuera ganó en NASCAR, volvió a ganar las 500 Millas y siguió siendo protagonista casi veinte años más.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Montoya es uno de los pocos pilotos que han ganado en la F1, en la IndyCar y en la NASCAR. Tiene dos de las tres joyas de la Triple Corona del automovilismo: Mónaco 2003 y las 500 Millas de Indianápolis, que ganó en 2000 y en 2015. Solo le falta Le Mans. En toda la historia, solo Graham Hill ha completado las tres.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Leyendas</div>
+<h2 class="question">¿Fangio sigue siendo el más grande de la historia?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, por eficacia</h3><p>Ganó 24 de sus 51 carreras y cinco títulos en ocho temporadas, en una época en la que un error podía costar la vida. Ningún campeón moderno se acerca a ese porcentaje.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, era otra F1</h3><p>Había pocas carreras, pocos rivales de primer nivel y enormes diferencias entre coches. Comparar a Fangio con los campeones de hoy es comparar deportes distintos que comparten nombre.</p></div>
+</div>
+<div class="cut amber">
+<div class="figure"><b>46%</b><span>de las carreras del campeonato a las que se inscribió Fangio terminaron en victoria. Nadie en la historia de la F1 lo ha superado.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Fangio es el único que ha ganado títulos con cuatro equipos distintos: Alfa Romeo, Ferrari, Mercedes y Maserati. Esa es su mayor virtud y también el argumento en su contra: sabía estar siempre en el equipo correcto en el momento correcto. Debutó en el campeonato con 38 años y ganó su último título con 46.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Técnica · 2009</div>
+<h2 class="question">Brawn 2009: ¿genialidad o un vacío del reglamento?</h2>
+<div class="cases">
+<div class="case"><h3>Genialidad</h3><p>Un equipo que Honda había abandonado se salvó a última hora, cambió de motor y ganó seis de las siete primeras carreras. Leer el reglamento mejor que nadie también es talento.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Un vacío</h3><p>El espíritu de las reglas de 2009 era reducir la carga aerodinámica, y el doble difusor hacía lo contrario. Ganar por un hueco en la redacción no es lo mismo que ganar con el mejor coche.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Según Nick Fry, entonces director ejecutivo del equipo, la idea la propuso un ingeniero de Honda que leía el reglamento en su segundo idioma y lo interpretó distinto. Toyota y Williams empezaron el año con el mismo difusor, y ninguno ganó una carrera. Honda puso unos 100 millones de dólares para la temporada de un equipo que ya no era suyo. A final de año lo compró Mercedes. Así nació el equipo que dominaría la era híbrida.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Argentina</div>
+<h2 class="question">¿Colapinto se ganó su asiento en la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, en la pista</h3><p>Llegó a Williams a mitad de 2024 como sustituto, sumó puntos en su segunda carrera y devolvió a Argentina a la parrilla después de más de dos décadas. Un novato así merecía continuidad.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, también pesó el negocio</h3><p>Tuvo accidentes costosos en su primera etapa y llegó a Alpine con un fuerte respaldo de patrocinadores y afición latinoamericana. En un equipo que busca ingresos, eso pesa tanto como el cronómetro.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>En 2025 Alpine le dio el asiento de Jack Doohan tras solo seis carreras, en una decisión impulsada por Flavio Briatore. La noche anterior había renunciado el jefe del equipo, Oliver Oakes; según The Race, señal de que no estaba de acuerdo. El trato inicial era de cinco carreras a prueba. Doohan, que no había sumado ni un punto, pasó a ser piloto reserva.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Títulos</div>
+<h2 class="question">Räikkönen 2007: ¿campeón por mérito o por regalo de McLaren?</h2>
+<div class="cases">
+<div class="case"><h3>Por mérito</h3><p>Ganó seis carreras, más que nadie ese año, y en el tramo final sumó siete podios seguidos. Nadie le regala un título al piloto que más gana.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Por regalo</h3><p>McLaren tenía el mejor coche y se destruyó por dentro: Alonso y Hamilton enfrentados, el caso de espionaje y dos errores de Hamilton cuando tenía el título en la mano. Räikkönen solo tuvo que estar ahí.</p></div>
+</div>
+<div class="cut amber">
+<div class="figure"><b>17</b><span>puntos por detrás del líder estaba Räikkönen con solo 20 en juego. Ganó el título por uno.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Llegó a las dos últimas carreras tercero, detrás de Hamilton y Alonso. Ganó las dos y terminó con 110 puntos, contra 109 de cada uno de ellos. Desde 1950 nadie había ganado el título llegando tercero a la última carrera. Y ese año Ferrari también se quedó con el título de constructores que McLaren perdió en los despachos.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Técnica · Electrónica</div>
+<h2 class="question">¿Deberían volver las ayudas electrónicas como el control de tracción?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, son tecnología</h3><p>La F1 debería ser el laboratorio más avanzado del automóvil. Prohibir sistemas que lleva cualquier coche de calle convierte a la categoría reina en un museo con motor.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, son cosa del piloto</h3><p>Sin control de tracción, el pie derecho vuelve a importar: el piloto que dosifica mejor el acelerador gana tiempo y cuida los neumáticos. Las ayudas igualan justo lo que debería diferenciar.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>El control de tracción se prohibió en 1994 junto con la suspensión activa, después de que en Brasil 1992 Nigel Mansell, con el Williams, clasificara 2,2 segundos por delante del primer coche que no era un Williams. En 2001 la FIA lo volvió a permitir, porque no podía demostrar quién lo seguía usando escondido en el software. Solo pudo prohibirlo de nuevo en 2008, cuando impuso a todos una centralita electrónica común.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Equipo · Red Bull</div>
+<h2 class="question">¿Red Bull trató a Webber como segundo piloto?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, siempre</h3><p>En Silverstone 2010 le quitaron el alerón delantero nuevo para dárselo a Vettel, que había roto el suyo en los libres. Ganó igual y lo dijo por radio: nada mal para un piloto número dos.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, tuvo su oportunidad</h3><p>Red Bull dejó a sus dos pilotos pelear el título de 2010 hasta la última carrera. Si Webber no lo ganó, fue en la pista y no en una reunión de equipo.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>El equipo justificó lo del alerón porque Vettel iba por delante en el campeonato. Pero a la última carrera de ese año llegó Webber por delante: segundo, con siete puntos más que Vettel. Ferrari planeó su carrera para marcar a Webber, y Alonso se quedó atascado en el tráfico mientras Vettel ganaba desde la pole. Vettel fue campeón con 23 años, el más joven de la historia hasta entonces. Webber terminó tercero.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Rivalidades</div>
+<h2 class="question">¿Cuál es la mejor rivalidad de la historia de la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Senna y Prost</h3><p>Compañeros en McLaren y enemigos declarados. Se repartieron tres títulos seguidos, de 1988 a 1990, y dos de ellos se decidieron con un choque entre ellos en Suzuka.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Hamilton y Verstappen</h3><p>Otra generación, la misma intensidad: un año entero rueda con rueda, choques en Silverstone y Monza, y un empate a puntos antes de la última carrera. Nada parecido en la era moderna.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Las rivalidades no siempre son lo que parecen. Hunt y Lauda, que el cine pintó como enemigos, eran amigos desde la Fórmula 3, y en el Gran Premio de Estados Unidos de 1976 tenían habitaciones contiguas. Hamilton y Rosberg, en cambio, habían sido compañeros de karting de adolescentes; la pelea en Mercedes enfrió esa amistad. Lauda, que vivió una rivalidad y presidió la otra, lo resumía así: los pilotos no son amigos, pelean entre ellos.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Técnica · Motores</div>
+<h2 class="question">¿Las reglas de 2026 fueron un paso adelante?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, era necesario</h3><p>Mitad de la potencia eléctrica, combustible cien por cien sostenible y aerodinámica activa. El nuevo reglamento atrajo a Audi, Ford y Cadillac, y puso a la F1 en la dirección en la que va el automóvil.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, es otra cosa</h3><p>Pilotos levantando el pie antes de las frenadas, incluso en clasificación, para recargar la batería. Verstappen lo llamó anticarreras; Hamilton dijo que eso no es correr. Si los mejores no disfrutan pilotando, algo falla.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Stefano Domenicali, jefe de la F1, dijo que estaba mal hablar mal de las nuevas reglas. Norris, el campeón, le respondió a Verstappen que si quería retirarse, podía hacerlo; semanas después admitió estar de acuerdo con casi todos los demás pilotos. Tras tres carreras, la F1 cambió la gestión de energía a partir de Miami. Y Toto Wolff apuntó a algo incómodo: según él, las críticas de Verstappen tenían mucho que ver con lo mal que le iba a Red Bull.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Títulos</div>
+<h2 class="question">¿Alonso merecía más de dos títulos?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, le sobró talento</h3><p>Perdió tres campeonatos en la última carrera, dos de ellos con un Ferrari que no era el mejor coche. Muchos de sus rivales lo consideran el piloto más completo de su generación.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, los títulos se ganan</h3><p>Un campeonato no se merece: se gana. Alonso también eligió mal sus equipos: se fue de McLaren tras un solo año y cambió Ferrari por McLaren-Honda en el peor momento posible.</p></div>
+</div>
+<div class="cut amber">
+<div class="figure"><b>8</b><span>puntos suman, entre los tres, los márgenes por los que Alonso perdió el título: 1 en 2007, 4 en 2010 y 3 en 2012.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Los tres campeonatos se decidieron en la última carrera, y en los tres llegó con opciones. Él mismo ha dicho que, si pudiera volver atrás, lo primero que elegiría sería ganar un campeonato con Ferrari. En 2026, con 45 años, sigue corriendo.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Contratos</div>
+<h2 class="question">¿Piastri hizo bien en dejar plantado a Alpine?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, eligió su carrera</h3><p>Alpine lo tuvo un año como reserva sin asiento y solo pensó en él cuando Alonso se fue. Un piloto tiene derecho a firmar donde vea futuro, y su contrato con McLaren ya estaba firmado.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, faltó lealtad</h3><p>Alpine lo formó en su academia y le pagó un amplio programa de pruebas en 2022 para prepararlo. Irse al rival, con el equipo enterándose por una publicación en redes, no es forma de agradecerlo.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Piastri había firmado con McLaren el 4 de julio de 2022, casi un mes antes de que Alpine lo anunciara como su piloto. El tribunal de contratos de la F1 falló por unanimidad a favor de McLaren. Su representante era Mark Webber. En 2026 ya sumaba nueve victorias y dos títulos de constructores con McLaren. Tres años después de aquel anuncio, Alpine era último en el campeonato.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Ferrari</div>
+<h2 class="question">¿Ferrari hizo bien en cambiar a Sainz por Hamilton?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, era Hamilton</h3><p>Tener al piloto más ganador de la historia es una oportunidad que no se deja pasar. Hamilton trae experiencia, patrocinio y un aura que ningún otro piloto le podía dar a Ferrari.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, Sainz rendía</h3><p>Sainz había sido el único piloto que le ganó una carrera a Red Bull en 2023. Estaba en su mejor momento y supo que lo reemplazaban antes de empezar 2024, por un piloto que tenía 39 años.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Ferrari anunció el cambio antes de que empezara la temporada 2024. En la tercera carrera, 16 días después de que le quitaran el apéndice, Sainz ganó en Australia. Hamilton llegó en 2025 y fue el primer año de su carrera sin un podio en Gran Premio.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Pilotos · Regresos</div>
+<h2 class="question">¿Valió la pena el regreso de Kubica a la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, fue una hazaña</h3><p>Volvió a un Gran Premio ocho años después de un accidente que casi le cuesta el brazo derecho. Que un piloto así vuelva a competir con los mejores del mundo ya es un triunfo, sume o no puntos.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, fue simbólico</h3><p>Corrió en el peor coche de la parrilla y se fue tras un año. Ese asiento pudo ser para un joven con futuro. La nostalgia no debería decidir quién corre en la F1.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Antes del accidente, Kubica tenía firmado un contrato con Ferrari para 2012. En su regreso de 2019 sumó el único punto de Williams en toda la temporada: sin él, el equipo habría encadenado 55 carreras sin puntuar. Seis años después, en 2025, ganó las 24 Horas de Le Mans al volante de un Ferrari y condujo el 43% de las vueltas.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Dominio</div>
+<h2 class="question">¿Qué coche fue más dominante: el McLaren de 1988 o el Red Bull de 2023?</h2>
+<div class="cases">
+<div class="case"><h3>McLaren 1988</h3><p>Ganó 15 de 16 carreras con dos de los mejores pilotos de la historia peleando entre ellos, y Senna hizo 13 poles. Lo logró con un motor turbo en el año en que las reglas intentaban frenar a los turbo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Red Bull 2023</h3><p>Ganó 21 de 22 carreras en un calendario más largo y con un tope de gasto pensado para igualar. Solo Verstappen ganó 19. Dominar con reglas diseñadas para evitarlo vale más.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Los dos perdieron una sola carrera, y las dos veces ganó Ferrari. En 1988 fue Monza, semanas después de la muerte de Enzo Ferrari, cuando Senna chocó con un rezagado a pocas vueltas del final. En 2023 fue Singapur, con Carlos Sainz. Por porcentaje gana Red Bull: 95% contra 94%. Por rivales dentro del garaje gana McLaren: el título de 1988 se lo disputaron sus dos pilotos.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Legado · Finales</div>
+<h2 class="question">Hamilton 2008 o Verstappen 2021: ¿qué final fue mejor?</h2>
+<div class="cases">
+<div class="case"><h3>Brasil 2008</h3><p>Massa ganó en casa, su familia ya celebraba y durante unos segundos fue campeón. Hamilton pasó a Timo Glock en la última curva de la última vuelta y ganó el título por un punto. Sin polémica de reglamento: pura pista.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Abu Dabi 2021</h3><p>Dos pilotos empatados a puntos antes de la última carrera, un duelo que duró todo el año y un título decidido en la última vuelta, rueda con rueda. Ningún final ha sido tan visto ni tan discutido.</p></div>
+</div>
+<div class="cut amber">
+<div class="graphic compact">
+<p class="gtitle">Clasificación final · Los dos primeros</p>
+<div class="barrow">
+<div class="who">Hamilton<small>2008 · campeón</small></div>
+<div class="track">
+<div class="fill solid" style="width:100%;background:#C08312;"></div>
+<span class="val" style="right:calc(0% + 2mm);color:#EFEFEB;">98</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Massa<small>2008</small></div>
+<div class="track">
+<div class="fill solid" style="width:99.0%;background:#15181C;"></div>
+<span class="val" style="right:calc(1.0% + 2mm);color:#EFEFEB;">97</span>
+</div>
+</div>
+<div style="height:2.5mm"></div>
+<div class="barrow">
+<div class="who">Verstappen<small>2021 · campeón</small></div>
+<div class="track">
+<div class="fill solid" style="width:100%;background:#15181C;"></div>
+<span class="val" style="right:calc(0% + 2mm);color:#EFEFEB;">395,5</span>
+</div>
+</div>
+<div class="barrow">
+<div class="who">Hamilton<small>2021</small></div>
+<div class="track">
+<div class="fill solid" style="width:98.0%;background:#C08312;"></div>
+<span class="val" style="right:calc(2.0% + 2mm);color:#EFEFEB;">387,5</span>
+</div>
+</div>
+<p style="margin:3mm 0 0;font-size:8.5pt;font-family:Archivo,Helvetica,sans-serif;color:#565C63;letter-spacing:.03em;">En ámbar, Hamilton: campeón por 1 punto en 2008 y subcampeón por 8 en 2021.</p>
+</div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Lewis Hamilton está en los dos: ganó uno y perdió el otro en la última vuelta. Y los dos tienen su sospecha. En 2008, Glock iba con neumáticos de seco bajo la lluvia y parte de la afición de Massa lo acusó de dejarse pasar, aunque su apuesta le salió bien y terminó sexto. En 2021, la sospecha cayó sobre la dirección de carrera. Massa acabó llevando su caso a los tribunales; Hamilton nunca lo hizo.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Seguridad · Lluvia</div>
+<h2 class="question">¿Deberían correrse carreras con lluvia extrema?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, ahí se ve el talento</h3><p>Con lluvia, el coche importa menos y la mano del piloto importa más. Muchas de las grandes actuaciones de la historia llegaron en mojado. Suspender cada vez que llueve fuerte es quitarle al deporte su mejor examen.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, el riesgo no compensa</h3><p>Con agua a chorros el piloto no ve el coche de delante, y un aquaplaning a 300 por hora no se controla con talento. Ningún espectáculo justifica correr sin visibilidad.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>En Suzuka 2022 la carrera se paró por la lluvia en la segunda vuelta, y Pierre Gasly pasó muy cerca de una grúa que estaba en la pista. Fue en el mismo circuito donde, en 2014, Jules Bianchi chocó contra una grúa bajo la lluvia y murió meses después. Los pilotos estallaron. La carrera se reanudó dos horas más tarde y se dieron puntos completos por un detalle del reglamento que casi nadie conocía: Verstappen supo que era campeón después de bajarse del coche.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Estrategia · Errores</div>
+<h2 class="question">¿Cuál fue el error de estrategia más caro de la historia?</h2>
+<div class="cases">
+<div class="case"><h3>Ferrari, Abu Dabi 2010</h3><p>Ferrari paró pronto a Alonso para cubrir a Webber y lo dejó atascado detrás de Vitaly Petrov el resto de la carrera. Llegaba líder y perdió el título. Ningún error de muro ha costado tanto.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Mercedes, Mónaco 2015</h3><p>Hamilton lideraba con unos 20 segundos de ventaja, lo llamaron a boxes con el coche de seguridad sin ninguna necesidad y salió tercero, en un circuito donde casi no se adelanta. Ningún error fue más absurdo.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Toto Wolff lo explicó sin rodeos: se equivocaron en la cuenta y creyeron tener un par de segundos más de margen. La decisión se tomó a 50 metros de la entrada a boxes. Pero Hamilton ganó el título de 2015 igual, así que el error le costó una carrera, no un campeonato. El error más absurdo no fue el más caro. El más caro, el de Ferrari en 2010, se tomó con la lógica de marcar al rival.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab amber"><span class="n"></span><span class="w">Discusión</span></div>
+<div class="head">Circuitos · Escapatorias</div>
+<h2 class="question">¿Debería volver la grava a todos los circuitos?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, que el error se pague</h3><p>Con asfalto en las escapatorias, pasarse de la línea no cuesta nada y hay que vigilarlo con cámaras. Con grava, el que se sale pierde tiempo o se queda atascado. El castigo lo pone la pista, no los comisarios.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, por seguridad</h3><p>Las escapatorias de asfalto se pusieron para que un coche fuera de control frene antes del muro. La grava puede hacer volcar un coche por un error mínimo. Cambiar seguridad por disciplina es un mal negocio.</p></div>
+</div>
+<div class="cut amber">
+<div class="body"><span class="tag">El dato incómodo</span><p>Tras el caos de Austria 2023, el circuito puso en 2024 franjas de grava de 2,5 metros en las curvas 9 y 10, justo donde se habían concentrado las infracciones. Pero son provisionales: se retiran y vuelve el asfalto antes de que llegue MotoGP, porque para una moto esa franja es un peligro. La F1 comparte muchos de sus circuitos con otras categorías, y lo que protege a unos pone en riesgo a otros.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+
+
+
+
+
+
+
+
+<div class="frame"><section class="sheet q">
+  <div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+  <div class="head">Dirección de carrera · Última vuelta</div>
+  <h2 class="question">Abu Dhabi 2021: ¿el título fue robado?</h2>
+  <div class="cases">
+    <div class="case"><h3>Sí</h3><p>El procedimiento no se aplicó como está escrito. Solo se dejó desdoblarse a los cinco coches entre los dos líderes, y la carrera se reanudó para una sola vuelta. Un campeonato de veintidós carreras se decidió con una interpretación que nunca se había usado.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>No</h3><p>Se cruzó una meta y alguien iba delante. Fue una decisión discutible de dirección de carrera, no un fraude. Y hubo veintiuna carreras antes, con cien momentos en los que el título se pudo cerrar sin depender de nadie.</p></div>
+  </div>
+  <div class="cut red"><div class="graphic">
       <p class="gtitle">Orden en pista antes de la reanudación</p>
       <svg viewBox="0 6 620 84" width="100%" role="img" aria-label="Diagrama del orden en pista y qué coches pudieron desdoblarse">
         <g font-family="Archivo, Helvetica, sans-serif">
@@ -571,23 +1848,352 @@
         </g>
       </svg>
     </div>
-    <div class="body">
-      <span class="tag">El dato incómodo</span>
-      <p>La FIA encontró dos incumplimientos, no uno: no dejar desdoblarse a todos los coches, y retirar el coche de seguridad sin completar la vuelta que exigía el artículo 48.12. Concluyó que hubo error humano de buena fe, declaró el resultado definitivo, apartó del cargo al director y después cambió «any» por «all» en el reglamento. Reescribió la regla y mantuvo el resultado. Los dos bandos citan el mismo informe.</p>
-    </div>
+    <div class="body"><span class="tag">El dato incómodo</span><p>La FIA encontró dos incumplimientos, no uno: no dejar desdoblarse a todos los coches, y retirar el coche de seguridad sin completar la vuelta que exigía el artículo 48.12. Concluyó que hubo error humano de buena fe, declaró el resultado definitivo, apartó del cargo al director y después cambió «any» por «all» en el reglamento. Reescribió la regla y mantuvo el resultado. Los dos bandos citan el mismo informe.</p></div>
   </div>
-
-  <div class="verdict">
-    <span class="lbl">Mi veredicto</span>
-    <div class="writeline"></div>
-    <div class="writeline short"></div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
   </div>
-
-  <div class="brandline">
-    <span class="wm">quill</span>
-    <span class="folio">página<b></b></span></span>
-  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
 </section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+  <div class="head">Equipos · Jerarquía</div>
+  <h2 class="question">¿Es legítimo que un equipo declare un piloto número 1?</h2>
+  <div class="cases">
+    <div class="case"><h3>Sí</h3><p>Es honesto. Todos los equipos lo hacen de facto en algún momento de la temporada. Declararlo solo elimina la hipocresía y le permite al segundo piloto negociar su contrato sabiendo qué está firmando.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>No</h3><p>Mata la única comparación limpia que existe en el deporte. Si un piloto tiene prioridad estructural en estrategia, actualizaciones y paradas, la comparación entre compañeros deja de significar algo. Y esa comparación es la base de casi todo argumento sobre quién es bueno.</p></div>
+  </div>
+  <div class="cut red">
+    <div class="body"><span class="tag">El dato incómodo</span><p>En 2007 McLaren dejó correr libremente a un doble campeón del mundo y a un debutante. Terminaron empatados: 109 puntos y cuatro victorias cada uno. El campeón fue Kimi Räikkönen con 110, que llegó a estar diecisiete puntos por detrás cuando solo quedaban veinte en juego. Dejarlos pelear les costó el título por un punto. Pero es también la única razón por la que sabemos lo que valía aquel debutante: bajo una jerarquía declarada, Lewis Hamilton habría pasado su primer año protegiendo a Fernando Alonso.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+  <div class="head">Reglamento · Acceso</div>
+  <h2 class="question">¿Debería existir una edad mínima para debutar en F1?</h2>
+  <div class="cases">
+    <div class="case"><h3>Sí</h3><p>Son coches de 300 km/h rodeados de otros diecinueve. La madurez para gestionar riesgo y presión no es opcional, y un chico de 17 años no puede consentir informadamente a esa carrera profesional.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>No</h3><p>El talento no espera. Los mejores han debutado jóvenes desde siempre, y una edad mínima protege a los pilotos establecidos de la competencia más que a los jóvenes del peligro.</p></div>
+  </div>
+  <div class="cut red">
+    <div class="body"><span class="tag">El dato incómodo</span><p>Max Verstappen corrió su primer Gran Premio con 17 años y 166 días, y ya había rodado en un libre a los 17 años y 3 días. La FIA escribió el mínimo de 18 años en la superlicencia expresamente por él, con efecto desde 2016. En junio de 2024 lo relajó de vuelta: ahora puede conceder la licencia a los 17 a quien demuestre capacidad y madurez excepcionales, y ya se la ha concedido a más de un piloto. La regla escrita para impedir el caso Verstappen duró menos que su carrera.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+  <div class="head">Deportividad · Límites</div>
+  <h2 class="question">¿Un piloto tiene derecho a sacar de pista a otro por el campeonato?</h2>
+  <div class="cases">
+    <div class="case"><h3>Nunca</h3><p>Un campeonato se gana conduciendo mejor, no usando el coche como arma. El que gana así no gana: elimina. Y en un deporte donde la gente se ha muerto, eso no es astucia.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>Es parte del juego</h3><p>Nadie firma para ser educado. Si el título se decide en una curva, defender hasta el límite es el trabajo, y la línea entre defender y chocar la dibujan los comisarios después.</p></div>
+  </div>
+  <div class="cut red">
+    <div class="body"><span class="tag">El dato incómodo</span><p>En Adelaida 1994 Schumacher chocó con Hill y se llevó el título: los comisarios lo llamaron incidente de carrera y no hubo sanción. En Jerez 1997 hizo algo parecido con Villeneuve y ese día tampoco pasó nada. Dos semanas después el Consejo Mundial de la FIA lo excluyó del campeonato y le borró los 78 puntos, pero le dejó intactas las victorias, las poles y las vueltas rápidas, y declaró que la maniobra fue deliberada aunque «sin malicia ni premeditación». Mismo piloto, misma jugada, tres años de diferencia, dos veredictos opuestos.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+  <div class="head">Equipos · Órdenes</div>
+  <h2 class="question">Multi-21: ¿Vettel tenía derecho a ignorar la orden?</h2>
+  <div class="cases">
+    <div class="case"><h3>Lo tenía</h3><p>Le pagan por ganar carreras, no por administrar acuerdos. Su compañero iba delante por una secuencia de paradas, no por ser más rápido. Un piloto que levanta el pie cuando puede ganar deja de ser piloto.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>No lo tenía</h3><p>El equipo pone el coche, el motor y el sueldo. Una orden pactada de antemano no es un capricho: es la condición para que dos coches de la misma casa no se destrocen entre ellos. Aceptarla es parte del trato.</p></div>
+  </div>
+  <div class="cut red">
+    <div class="body"><span class="tag">El dato incómodo</span><p>Vettel se disculpó con el equipo y con Webber en el podio ese mismo día, pero en público añadió que no se disculpaba por ganar. Semanas después dijo que probablemente habría ignorado la orden aunque la hubiera entendido, y que Webber no merecía la victoria. Red Bull nunca lo sancionó, y Webber contó después en su libro el motivo que le admitió Horner: llegó una carta del abogado de Vettel alegando que esa orden incumplía su contrato por ser una instrucción no razonable.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+<div class="frame"><section class="sheet q">
+  <div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+  <div class="head">Rivalidades · Suzuka</div>
+  <h2 class="question">Suzuka 1990: ¿Senna hizo trampa?</h2>
+  <div class="cases">
+    <div class="case"><h3>Sí</h3><p>Decidió antes de la salida que si perdía la arrancada no iba a levantar. Eso no es un incidente de carrera: es un plan. Y lo ejecutó en la primera curva de un circuito donde se llega a más de 250 por hora.</p></div>
+    <div class="spine"></div>
+    <div class="case"><h3>No, fue la cuenta pendiente</h3><p>Un año antes le habían quitado una victoria y un campeonato con una decisión que olía mal. Pidió que movieran la pole al lado limpio y se lo negaron. Cuando el sistema te cierra todas las puertas, la pista es la única que queda.</p></div>
+  </div>
+  <div class="cut red">
+    <div class="body"><span class="tag">El dato incómodo</span><p>Senna lo confesó un año después, en la rueda de prensa de Suzuka 1991: había decidido de antemano no ceder la curva. La FIA nunca lo sancionó, y años más tarde Balestre admitió que en 1989 sí había actuado para favorecer a Prost. Y hay un detalle más: tras la confesión, Mosley convenció a Senna de firmar un comunicado diciendo que jamás había chocado a propósito, para protegerlo de una acusación de conducción peligrosa. El propio Mosley llamó a ese texto palabras de comadreja.</p></div>
+  </div>
+  <div class="verdict"><span class="lbl">Mi veredicto</span>
+    <div class="writeline"></div><div class="writeline short"></div>
+  </div>
+  <div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Integridad · Singapur 2008</div>
+<h2 class="question">Crashgate: ¿el castigo fue proporcional?</h2>
+<div class="cases">
+<div class="case"><h3>Fue blando</h3><p>En el primer Gran Premio de Singapur, en 2008, Renault ordenó a Nelson Piquet Jr. estrellarse a propósito para que el coche de seguridad favoreciera a su compañero Fernando Alonso, que ganó. Arreglar una carrera poniendo vidas en riesgo no admite un castigo simbólico.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Fue el correcto</h3><p>Se castigó a las personas, no a la marca. Los responsables salieron, Renault admitió los hechos y pagó la investigación. Echar a cientos de empleados que no sabían nada por la decisión de unos pocos no habría sido justicia.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>La FIA escribió que la falta era de una gravedad sin precedentes y merecía la exclusión permanente, y acto seguido la dejó en suspenso dos años. Renault no perdió puntos, Alonso conservó la victoria y Piquet, que chocó, recibió inmunidad por declarar. Briatore fue vetado de por vida, pero un tribunal de París anuló el veto en enero de 2010 por irregularidades. En 2024 volvió como asesor de ese mismo equipo, y en 2025 pasó a dirigirlo.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Comisarios · Silverstone</div>
+<h2 class="question">Silverstone 2021: ¿la sanción a Hamilton fue suficiente?</h2>
+<div class="cases">
+<div class="case"><h3>Fue poca</h3><p>En la primera vuelta Hamilton tocó a Verstappen en Copse, una curva a casi 300 por hora, y lo mandó contra las barreras. Verstappen acabó en el hospital y Red Bull con una factura de 1,8 millones de dólares. Hamilton cumplió diez segundos y ganó.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Fue la justa</h3><p>Los comisarios lo declararon culpable principal, no único. Verstappen tampoco cedió en una curva donde dos coches no caben mucho tiempo. Las sanciones castigan la maniobra, no el tamaño del accidente.</p></div>
+</div>
+<div class="cut red">
+<div class="figure"><b>8</b><span>puntos de ventaja de Verstappen al salir de Silverstone. Y puntos de margen con que ganó el título.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>Red Bull pidió revisar la sanción y usó como prueba una comparación: en la vuelta 50 de 52, Hamilton adelantó a Leclerc por el interior de la misma curva y Leclerc se abrió sin que se tocaran. Los comisarios la rechazaron por no aportar nada nuevo. Para unos demuestra que el hueco existía si el otro lo respetaba; para otros, que Hamilton sabía hacerlo sin chocar. La cifra de arriba es lo único que no admite discusión.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Integridad · Espionaje</div>
+<h2 class="question">Spygate: ¿el castigo a McLaren fue justo?</h2>
+<div class="cases">
+<div class="case"><h3>Fue justo</h3><p>En 2007 apareció en casa del jefe de diseño de McLaren un dossier de 780 páginas con secretos de Ferrari, y los correos de sus pilotos probaron que la información circuló dentro del equipo. Espiar a un rival merece el castigo más duro.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Fue desproporcionado</h3><p>Cien millones de dólares y la exclusión del campeonato de constructores, por información que McLaren siempre negó haber usado en el coche. Muchos vieron detrás la mala relación entre Ron Dennis y Max Mosley, presidente de la FIA.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Los pilotos recibieron inmunidad a cambio de aportar esos correos, así que Alonso y Hamilton conservaron sus puntos. Y tres meses después, la FIA juzgó a Renault por tener información técnica de McLaren que se había llevado un ingeniero: lo declaró culpable y no le impuso ninguna sanción, porque no era información en uso. La multa más grande de la historia del deporte y una culpa sin castigo, del mismo tribunal y el mismo año.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Integridad · Tribunales</div>
+<h2 class="question">¿Debería reconocerse a Massa como campeón de 2008?</h2>
+<div class="cases">
+<div class="case"><h3>Sí</h3><p>Perdió por un punto un campeonato alterado por el choque provocado de Singapur, una carrera que él lideraba. En 2023 Ecclestone sugirió que la F1 lo supo antes de que acabara la temporada. Si lo sabían, ese resultado no debió contar.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No</h3><p>Un título no se reescribe quince años después. Singapur fue una de dieciocho carreras, y en todas hubo puntos perdidos por los dos lados. Si se corrige una, habría que revisar todas.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Esa noche Massa salió de su parada con la manguera de combustible todavía enganchada: el error fue de su propio equipo, Ferrari, y terminó fuera de los puntos. Hamilton sumó seis y ganó el título por uno. En 2024 Massa demandó en Londres a la FIA, a la F1 y a Ecclestone por 64 millones de libras. En noviembre de 2025 el juez dejó seguir parte del caso, pero aclaró que ningún tribunal puede cambiar el resultado de 2008. El título no está en juego; el dinero, sí.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Comisarios · Montreal</div>
+<h2 class="question">Canadá 2019: ¿le robaron la victoria a Vettel?</h2>
+<div class="cases">
+<div class="case"><h3>Sí</h3><p>Vettel perdió el coche, cruzó la hierba y volvió a la pista como pudo: no tenía adónde ir. Castigar a un piloto por no desaparecer del circuito es tratar un error de conducción como si fuera una maniobra.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No</h3><p>Volvió a la trazada justo delante de Hamilton y lo obligó a levantar el pie para no chocar contra el muro. La regla exige reincorporarse de forma segura, y no lo hizo. El error fue suyo, no de los comisarios.</p></div>
+</div>
+<div class="cut red">
+<div class="figure"><b>1,342</b><span>segundos de ventaja con los que Vettel cruzó primero la meta. La sanción era de cinco.</span></div>
+<div class="body"><span class="tag">El dato incómodo</span><p>La sanción lo dejó segundo. Después cambió de sitio los carteles de posición frente a los coches. Ferrari pidió revisar la decisión con siete pruebas nuevas; una de ellas era un análisis en video hecho para Sky por un comentarista de televisión, Karun Chandhok. Los comisarios concluyeron que no había nada nuevo. Hamilton sumó en Montreal su séptima victoria e igualó el récord de Schumacher allí.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Equipos · Alianzas</div>
+<h2 class="question">¿Los equipos B son trampa encubierta?</h2>
+<div class="cases">
+<div class="case"><h3>Sí</h3><p>Dos equipos con el mismo dueño compiten en la misma pista. Uno puede ayudar al otro con piezas, información o una simple maniobra. Como dice Zak Brown, ningún otro gran deporte permite algo así.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No</h3><p>Sin la alianza con un equipo grande, varios equipos pequeños no sobrevivirían. Comprar piezas es legal, abarata costes y mete más coches competitivos en la parrilla. Y el filial fue la puerta de entrada de pilotos como Verstappen.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>En Singapur 2024, en la que sería su última carrera, Daniel Ricciardo, del equipo filial de Red Bull, marcó la vuelta rápida y le quitó ese punto a Lando Norris, rival de Verstappen por el título. Zak Brown respondió con ironía que no sabía que eso estaba permitido. Lo estaba. Para 2026 la FIA anunció medidas para separar física e informáticamente a los equipos vinculados, pero sin prohibir que tengan el mismo dueño.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Equipo · McLaren 2007</div>
+<h2 class="question">McLaren 2007: ¿quién rompió el equipo, Alonso o Hamilton?</h2>
+<div class="cases">
+<div class="case"><h3>Alonso</h3><p>Llegó como bicampeón y no aceptó que un novato le ganara con el mismo coche. En Hungría bloqueó a Hamilton en boxes para quitarle la última vuelta, y el equipo terminó multado y sin los puntos de constructores de esa carrera.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Hamilton</h3><p>Un novato que se salta el plan del equipo en clasificación, como hizo en Hungría, rompe la confianza tanto como el que responde. McLaren apostó por el joven y Alonso se sintió tratado como uno más.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Años después, Ron Dennis aseguró que Alonso nunca pidió ser el número 1: aceptó la igualdad. Pero la mañana del Gran Premio de Hungría, según contó el propio Dennis, Alonso le habló de unos correos del caso de espionaje que podían dañar al equipo. Alonso culpa a un tercero: un jefe que no supo controlar la situación. Los dos terminaron con 109 puntos, uno menos que Räikkönen, y Alonso se fue con dos años de contrato por delante.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Equipo · Hockenheim</div>
+<h2 class="question">Alemania 2010: ¿la orden de Ferrari destruyó su credibilidad?</h2>
+<div class="cases">
+<div class="case"><h3>Sí</h3><p>Las órdenes estaban prohibidas y Ferrari las dio en clave por radio: "Fernando es más rápido que tú". Después juró que Massa se apartó por decisión propia. Casi nadie se lo creyó.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No</h3><p>Alonso peleaba el título y Massa no. Un equipo que no protege a su mejor opción les regala puntos a los rivales. La regla era la hipócrita, y por eso se eliminó al año siguiente.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Ese día se cumplía exactamente un año del accidente de Massa en Hungría, que lo dejó en coma. Iba primero y en control. Tras apartarse, su ingeniero le dijo por radio: buen chico, lo siento. Ferrari pagó 100.000 dólares por siete puntos que al final no alcanzaron: Alonso perdió el título por cuatro. El jefe de Ferrari que insistió en que fue decisión de Massa era Stefano Domenicali, hoy presidente de la F1.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Comisarios · Hungría</div>
+<h2 class="question">Hungría 2010: ¿Schumacher debió ser descalificado?</h2>
+<div class="cases">
+<div class="case"><h3>Sí</h3><p>Empujó a Barrichello contra el muro de boxes a casi 300 por hora por un décimo puesto. Barrichello pidió bandera negra por radio. Poner en riesgo la vida de otro por un punto merece la exclusión, no una sanción en la parrilla.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No</h3><p>Fue una defensa durísima, pero no hubo contacto y Barrichello pasó. Diez puestos de sanción en la siguiente carrera son un castigo serio, y Schumacher acabó reconociendo que se había pasado.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Uno de los comisarios, el expiloto Derek Warwick, explicó después que la descalificación era una opción si la maniobra hubiera ocurrido antes: el video llegó tarde y no les dio tiempo. Al terminar, Schumacher dijo que era una pelea dura y que para eso estaban ahí; al día siguiente admitió que había sido demasiado. Barrichello, que había sido seis años su compañero en Ferrari, se quedó con el punto.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Comisarios · Interlagos</div>
+<h2 class="question">Brasil 2012: ¿Vettel adelantó con bandera amarilla?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, lo parecía</h3><p>La pantalla de su propio volante mostraba el aviso de bandera amarilla cuando pasó a Jean-Éric Vergne. Con amarilla no se adelanta, y un campeonato no debería depender de una duda así.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, había verde</h3><p>Un comisario agitaba una bandera verde justo antes del adelantamiento, lo que levantaba la prohibición. La FIA lo revisó y concluyó que no hubo infracción. Un video de internet no sustituye al reglamento.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Si hubiera habido sanción, Vettel habría caído del sexto al octavo puesto y Fernando Alonso habría sido campeón por un punto. Ferrari escribió a la FIA pidiendo explicaciones y dijo haber recibido decenas de miles de consultas de aficionados, aunque ningún equipo había protestado el domingo. Bernie Ecclestone lo llamó una broma. Ferrari dio el caso por cerrado.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Legado · 2021</div>
+<h2 class="question">¿La pelea de 2021 entre Verstappen y Hamilton fue buena o mala para la F1?</h2>
+<div class="cases">
+<div class="case"><h3>Buena</h3><p>Un duelo de todo el año entre dos de los mejores de la historia, empatados antes de la última carrera. La audiencia en Estados Unidos creció un 58% y la final la vieron 108,7 millones de personas.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>Mala</h3><p>Choques en Silverstone y Monza, acusaciones cruzadas y un título decidido por una decisión de la dirección de carrera. La F1 ganó espectadores y perdió credibilidad, y la credibilidad cuesta más recuperarla.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>La cifra más citada tiene letra pequeña. La final de Abu Dabi fue la carrera más vista del año, pero la audiencia media por Gran Premio bajó de 87,4 millones en 2020 a 70,3 millones en 2021, aunque subió un 13% en los mercados comparables. Y el director de carrera de aquella noche, Michael Masi, fue apartado del puesto antes de que empezara la temporada 2022.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Comisarios · Spa</div>
+<h2 class="question">Spa 2012: ¿fue justo suspender a Grosjean una carrera?</h2>
+<div class="cases">
+<div class="case"><h3>Sí, era un peligro</h3><p>Era su séptimo incidente de primera vuelta en doce carreras, y en Spa su coche voló por encima de la cabeza de Alonso. Cuando alguien pone en riesgo a los demás una y otra vez, una multa no basta.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No, fue desproporcionado</h3><p>Los accidentes en la salida son parte de las carreras y no hubo intención. Suspender a un piloto por un error de arranque fue usar su caso como escarmiento para todos.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Fue la primera suspensión por provocar un accidente desde Mika Häkkinen en 1994, y llegó con una multa de 50.000 euros. Mark Webber lo llamó "el loco de la primera vuelta". Grosjean empezó a trabajar con un psicólogo y volvió convertido en un piloto más calmado. Ocho años después, en Baréin, sobrevivió a un choque en llamas gracias al halo.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Seguridad · Indianápolis</div>
+<h2 class="question">Indianápolis 2005: ¿la FIA debió permitir la chicana?</h2>
+<div class="cases">
+<div class="case"><h3>Sí</h3><p>Los neumáticos Michelin no aguantaban la curva 13 y había una solución sencilla: una chicana provisional. La FIA prefirió el reglamento a la carrera y dejó a más de cien mil personas viendo seis coches.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>No</h3><p>Cambiar el circuito el domingo para salvar a quien trajo neumáticos equivocados habría castigado a los equipos de Bridgestone, que hicieron bien su trabajo. El error fue de Michelin, no del reglamento.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Max Mosley, presidente de la FIA, ni siquiera estaba en Indianápolis, y según Ecclestone amenazó con cancelar el Gran Premio si se tocaba el circuito. Ferrari no fue a las reuniones: su jefe, Jean Todt, dijo que era un problema de la FIA y de Michelin. Ferrari no había ganado en las ocho primeras carreras de 2005 y ganó esa, con seis coches en pista. Fue su única victoria del año.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+<div class="frame"><section class="sheet q">
+<div class="tab red"><span class="n"></span><span class="w">Zona roja</span></div>
+<div class="head">Equipo · Mercedes</div>
+<h2 class="question">España 2016: ¿de quién fue la culpa del choque entre Hamilton y Rosberg?</h2>
+<div class="cases">
+<div class="case"><h3>De Hamilton</h3><p>Se metió por un hueco que se cerraba, pisó la hierba y se llevó por delante a su compañero en la cuarta curva. Niki Lauda, del propio Mercedes, lo dijo al momento: demasiado agresivo.</p></div>
+<div class="spine"></div>
+<div class="case"><h3>De Rosberg</h3><p>Rosberg le cerró la puerta a un coche que venía mucho más rápido y lo mandó a la hierba. El reglamento obliga a dejar espacio cuando el otro ya tiene una parte importante del coche al lado.</p></div>
+</div>
+<div class="cut red">
+<div class="body"><span class="tag">El dato incómodo</span><p>Rosberg iba 17 km/h más lento porque había arrancado con el modo de motor equivocado: Hamilton se le vino encima sin remedio. Los comisarios lo dejaron en incidente de carrera. Los dos se quedaron sin puntos ese día, y a final de año Rosberg fue campeón por cinco. Esa misma tarde, sin los Mercedes en pista, Max Verstappen ganó su primera carrera, con 18 años.</p></div>
+</div>
+<div class="verdict"><span class="lbl">Mi veredicto</span>
+<div class="writeline"></div><div class="writeline short"></div>
+</div>
+<div class="brandline"><span class="wm">quill</span><span class="folio">página<b></b></span></div>
+</section></div>
+
+
+
+
+
+
+
+
+
 
 <!-- 6 ▸ CANON -->
 <div class="frame"><section class="sheet">
